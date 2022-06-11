@@ -13,10 +13,10 @@ class ItemsModel(db.Model):
     path = db.Column(db.String(8), nullable=False)
     played = db.Column(db.Integer)
 
-    def __init__(self, name, duration, type):
+    def __init__(self, name, duration, type, priority):
         self.name = name
         self.type = type
-        self.priority = self.id
+        self.priority = priority
         self.duration = duration
         self.path = "./static/" + name
         self.played = 0
@@ -64,8 +64,4 @@ class ItemsModel(db.Model):
     @classmethod
     def retrieveAllEntries(cls):
         return ItemsModel.query.all()
-
-    @classmethod
-    def retrieveByUnplayed(cls):
-        return ItemsModel.query.filter_by(played=0).all()
 

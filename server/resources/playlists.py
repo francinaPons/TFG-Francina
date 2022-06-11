@@ -42,7 +42,7 @@ class Playlists(Resource):
                     new_item = ItemsModel.find_by_name(name=item['name'])
                     if new_item is None:
                         new_item = ItemsModel(name=item['name'],
-                                              duration=item['duration'], type=item['type'])
+                                              duration=item['duration'], type=item['type'], priority=item['priority'])
                     new_playlist.items.append(new_item)
                 new_playlist.save_to_db()
                 return {'playlist': new_playlist.json()}, 200
