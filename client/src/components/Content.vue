@@ -45,9 +45,9 @@
       <span style="display:inline-block; width:115px;"></span>
       <b-button v-if="filesAreChoosen" variant="danger" @click="removeFile">Esborrar els fitxers seleccionats</b-button>
       <span style="display:inline-block; width:35px;"></span>
-      <b-button v-if="filesAreChoosen" v-b-modal="addToPlayList-modal" @click="addToPlaylist" variant="outline-primary">Afegir a la Llista de reproducció</b-button>
-      <span style="display:inline-block; width:50px;"></span>
-      <b-button v-if="filesAreChoosen" @click="addToPlaylist2()">Francina</b-button>
+      <!--<b-button v-if="filesAreChoosen" v-b-modal="addToPlayList-modal" @click="addToPlaylist" variant="outline-primary">Afegir a la Llista de reproducció</b-button>
+      <span style="display:inline-block; width:50px;"></span>-->
+      <b-button v-if="filesAreChoosen" @click="addToPlaylist2()">Afegir a una llista de reproducció</b-button>
 
       <!--<b-button v-if="fileIsChoosen" v-b-modal="playnext-modal" @click="playNext" variant="outline-primary" >Reproduïr després</b-button>-->
     </div>
