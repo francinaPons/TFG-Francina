@@ -1,6 +1,7 @@
 from flask import Flask, make_response, request
 from resources.nextByMode import *
 from models.content import ContentModel
+from models.accounts import auth
 
 
 class PlaylistEntry(Resource):

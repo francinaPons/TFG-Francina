@@ -68,19 +68,19 @@ class Content(Resource):
         return make_response(("Chunk upload successful", 200))
 
     @auth.login_required()
-    def delete(self,id):
+    def delete(self, id):
         try:
             content = ContentModel.find_by_id(id).json()
             name=content['name']
             response = "El fitxer" + name + "s'ha eliminat correctament"
             ContentModel.delete_by_id(id)
-            os.remove(content['path'])
+            # os.remove(content['path'])
         except:
             m = "No s'ha pogut eliminar el fitxer amb id: " + str(id)
             return {'message': m}, 404
         return {'message': response}, 200
 
-    # @auth.login_required()
+    @auth.login_required()
     def get(self):
         content = ContentModel.query.all()
         container_content = []

@@ -2,10 +2,11 @@ from flask import Flask, make_response, request
 
 from models.tags import TagsModel
 from resources.nextByMode import *
+from models.accounts import auth
 
 
 class Tags(Resource):
-    # TODO @auth.login_required()
+    @auth.login_required()
     def post(self):
         parser = reqparse.RequestParser()
         # define al input parameters need and its type
@@ -24,7 +25,7 @@ class Tags(Resource):
         return {'message': "Tag amb nom" + dades['name'] + " guardat correctament"}, 200
 
 class TagsList(Resource):
-    #TODO @auth.login_required(role='admin')
+    @auth.login_required(role='admin')
     def get(self):
         plts = TagsModel.retrieveAllEntries()
 

@@ -114,7 +114,7 @@ class Accounts(Resource):
 
 
 class AccountsList(Resource):
-    #TODO @auth.login_required(role='admin')
+    @auth.login_required(role='admin')
     def get(self):
         acc = AccountsModel.retrieveAllAccounts(self)
 

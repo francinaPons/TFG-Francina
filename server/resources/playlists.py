@@ -2,10 +2,11 @@ from flask_restful import Resource, reqparse
 from models.playlist_names import PlaylistsModel
 from models.tags import TagsModel
 from models.items import ItemsModel
+from models.accounts import auth
 
 
 class Playlists(Resource):
-    # TODO @auth.login_required(role='admin')
+    @auth.login_required(role='admin')
     def get(self, name):
         try:
             pl = PlaylistsModel.find_by_name(name).json()
@@ -13,7 +14,7 @@ class Playlists(Resource):
             return {'message': "Playlist no  trobada"}, 400
         return {'playlist': pl}, 200
 
-    # @auth.login_required(role='admin')
+    @auth.login_required(role='admin')
     def post(self):
         try:
             parser = reqparse.RequestParser()  # create parameters parser from request
@@ -70,7 +71,7 @@ class Playlists(Resource):
 
 
 class PlaylistsList(Resource):
-    # TODO @auth.login_required(role='admin')
+    @auth.login_required(role='admin')
     def get(self):
         plts = PlaylistsModel.retrieveAllEntries()
         container_playlists = []

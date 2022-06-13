@@ -2,9 +2,10 @@ from flask import Flask, make_response, request
 
 from models.items import ItemsModel
 from resources.nextByMode import *
+from models.accounts import auth
 
 class Items(Resource):
-    # TODO @auth.login_required()
+    @auth.login_required()
     def post(self):
         parser = reqparse.RequestParser()
         # define al input parameters need and its type
@@ -18,7 +19,7 @@ class Items(Resource):
                             help="Duration not valid: 'duration' not provided")
         parser.add_argument('played', type=int, required=True,
                             help="Played not valid: 'played' not provided")
-        parser.add_argument('playlist_name', type=str, required=False,  # TODO: change required to True
+        parser.add_argument('playlist_name', type=str, required=True,  # TODO: change required to True
                             help="Playlist_name not valid: 'playlist_name' not provided")
         dades = parser.parse_args()
         chck = checkType(dades['name'])
@@ -40,7 +41,7 @@ class Items(Resource):
 
 
 class ItemsList(Resource):
-    # TODO @auth.login_required(role='admin')
+    @auth.login_required(role='admin')
     def get(self):
         plts = ItemsModel.retrieveAllEntries()
 

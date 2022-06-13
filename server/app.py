@@ -33,13 +33,14 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = secret_key
 
 api = Api(app)
-api.add_resource(Content, '/content/<int:id>', '/content')
+
 migrate = Migrate(app, db, directory='./database/migrations')
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 db.init_app(app)
 
 # Endpoints
+api.add_resource(Content, '/content/<int:id>', '/content')
 api.add_resource(Accounts, '/account/<string:username>', '/account')
 api.add_resource(AccountsList, '/accounts')
 api.add_resource(Login, '/login')
