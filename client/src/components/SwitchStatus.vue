@@ -36,7 +36,7 @@ export default {
           alert(error.response.data.message);
         });
     },
-    getStatus() {
+   /* getStatus() {
       // this.selectedFileName = ''
       // this.fileIsChoosen = false
       const path = 'http://127.0.0.1:8000/status';
@@ -52,7 +52,7 @@ export default {
         .catch((error) => {
           console.log(error.response.data.message);
         });
-    },
+    },*/
   },
   data() {
     return {

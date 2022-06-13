@@ -22,7 +22,7 @@ class ContentModel(db.Model):
 
     def json(self):
         return json.loads(json.dumps(self, default=lambda o: {'id': self.id, 'name': self.name, 'path': self.path,
-                                                              'size': self.size}))
+                                                              'size': self.size, 'priority': 0, 'duration': 0}))
 
     def save_to_db(self):
         try:

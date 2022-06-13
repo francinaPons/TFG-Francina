@@ -26,7 +26,7 @@
               class="list-group-item"
               @click="updatePlaylist(item)">
               {{ item.name }}
-              <p>{{ item.tags }} </p>
+              <!--<p>{{ item.tags }} </p>-->
             </b-list-group-item>
           </b-list-group>
           <!--<div style="cursor: pointer" v-for="item in playlists"
@@ -84,21 +84,21 @@
                 </template>
               </vue-good-table>
             </div>
-            <div>
+            <!--<div>
               <span style="display:inline-block; width:50px;"></span>
               <b-img alt="Image 1" fluid height="200" thumbnail
                      v-bind:src=imageSource v-if="fileIsChoosen"
                      width="300"></b-img>
-            </div>
+            </div>-->
           </div>
           <div class="row">
         <div class="col">
            <b-button @click="removeAllFiles" v-if="files.length" variant="danger">
              Buidar la llista</b-button>
         </div>
-        <div class="col">
+        <!--<div class="col">
           <b-button v-b-modal.modal-center>Guardar Playlist</b-button>
-        </div>
+        </div>-->
       </div>
         </div>
       </div>
@@ -141,10 +141,11 @@
         <b-button @click="removeFile" v-if="fileIsChoosen" variant="danger">
           Esborrar de la llista</b-button>
         <span style="display:inline-block; width:35px;"></span>
-        <b-button @click="playNext" v-b-modal="addToPlayList-modal"
+        <!--<b-button @click="playNext" v-b-modal="addToPlayList-modal"
                   v-if="fileIsChoosen" variant="outline-primary">
           Reproduir després
-        </b-button>
+        </b-button>-->
+
         <b-button @click="setupPlaylist" variant="outline-primary">
         Reproduir llista
       </b-button>
@@ -169,11 +170,9 @@ import axios from 'axios';
 
 export default {
   name: 'Playlist',
-  created() {
+  mounted() {
     // this.getFiles();
     this.getTags();
-    this.mode = this.getMode()
-    this.intercalatedFile = this.getIntercalatedFile()
     this.getPlaylists()
   },
   destroy() {
@@ -277,6 +276,7 @@ export default {
         this.setIntercalatedAXIOS(fileName, parseInt(inputDuration), 'Image');
       }
     },
+    /*
     setNext(fname, fduration, ftype) {
       axios({
         method: 'post',
@@ -294,7 +294,7 @@ export default {
           // eslint-disable-next-line no-alert
           alert(error.response.data.message);
         });
-    },
+    },*/
     setIntercalatedAXIOS(fname, fduration, ftype) {
       axios({
         method: 'post',
@@ -431,6 +431,7 @@ export default {
           console.log(error.response.data.message);
         });
     },
+    /*
     getMode() {
       // this.selectedFileName = ''
       // this.fileIsChoosen = false
@@ -448,7 +449,7 @@ export default {
         .catch((error) => {
           console.log(error.response.data.message);
         });
-    },
+    },*/
     changeMode() {
       let m = this.selected;
       if (this.selected === null) {
@@ -470,6 +471,7 @@ export default {
           alert(error.response.data.message);
         });
     },
+    /*
     changeTable() {
       if (this.selected === 'rndm') {
         this.columns = [
@@ -509,6 +511,7 @@ export default {
         ];
       }
     },
+
     getIntercalatedFile() {
       // this.selectedFileName = ''
       // this.fileIsChoosen = false
@@ -522,7 +525,7 @@ export default {
         .catch((error) => {
           console.log(error.response.data.message);
         });
-    },
+    },*/
     methodUpload() {
       this.seenContent = !this.seenContent;
       // this.getFiles();

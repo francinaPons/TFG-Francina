@@ -27,7 +27,23 @@ class Playlists(Resource):
             dades = parser.parse_args()
 
             if PlaylistsModel.find_by_name(dades['name']):
-                return {'message': "Playlist amb ['nom': {} ] ja existeix".format(dades['name'])}, 409
+                new_playlist = PlaylistsModel.find_by_name(dades['name'])
+                # TODO: update tags instead of create
+                for tag in dades['tags']:
+                    new_tag = TagsModel.find_by_name(name=tag)
+                    if new_tag is None:
+                        new_tag = TagsModel(name=tag)
+                    new_playlist.tags.append(new_tag)
+                #  TODO: update items instead of create
+                for item in dades['items']:
+                    print(item)
+                    new_item = ItemsModel.find_by_name(name=item['name'])
+                    if new_item is None:
+                        new_item = ItemsModel(name=item['name'],
+                                              duration=item['duration'], type=item['type'], priority=item['priority'])
+                    new_playlist.items.append(new_item)
+                new_playlist.save_to_db()
+                # return {'message': "Playlist amb ['nom': {} ] ja existeix".format(dades['name'])}, 409
             else:
                 new_playlist = PlaylistsModel(dades['name'])
                 # Add tags to the playlist

@@ -1,32 +1,35 @@
 <template>
-<div >
-  <div v-if="seenContent" id="contentView">
+<div>
+  <div v-if="seenContent && contentSettings" id="contentView">
     <br>
     <div style="display: flex">
       <div style="width: 90%; margin: auto;">
-        <vue-good-table ref ='my-table' style="color: #0032ce;" :selected="enabled" :columns="columns" :rows="files"  max-height="300px" :search-options="{enabled: true}" :pagination-options="{enabled: true, perPage: 25,
-        nextLabel: 'Següent',
-        prevLabel: 'Anterior',
-        rowsPerPageLabel: 'elements per pàgina',
-        ofLabel: 'de',
-        pageLabel: 'pàgina', // for 'pages' mode
-        allLabel: 'Tots',}" @on-row-click="onRowClick"
-        @on-selected-rows-change="selectionChanged"
-        :select-options="{
-        enabled: true,
-        selectOnCheckboxOnly: false, // only select when checkbox is clicked instead of the row
-        selectionInfoClass: 'custom-class',
-        selectionText: 'Elements seleccionats',
-               clearSelectionText: 'clear',
-        disableSelectInfo: true, // disable the select info panel on top
-        selectAllByGroup: true, // when used in combination with a grouped table, add a checkbox in the header row to check/uncheck the entire group
-        }">
+        <vue-good-table ref ='my-table' style="color: #0032ce;"
+                        :selected="enabled" :columns="columns" :rows="files"
+                        max-height="300px" :search-options="{enabled: true}"
+                        :pagination-options="{enabled: true, perPage: 25,
+                        nextLabel: 'Següent',
+                        prevLabel: 'Anterior',
+                        rowsPerPageLabel: 'elements per pàgina',
+                        ofLabel: 'de',
+                        pageLabel: 'pàgina', // for 'pages' mode
+                        allLabel: 'Tots',}" @on-row-click="onRowClick"
+                        @on-selected-rows-change="selectionChanged"
+                        :select-options="{
+                        enabled: true,
+                        selectOnCheckboxOnly: false, // only select when checkbox is clicked instead of the row
+                        selectionInfoClass: 'custom-class',
+                        selectionText: 'Elements seleccionats',
+                               clearSelectionText: 'clear',
+                        disableSelectInfo: true, // disable the select info panel on top
+                        selectAllByGroup: true, // when used in combination with a grouped table, add a checkbox in the header row to check/uncheck the entire group
+                        }">
         <template slot="table-row" slot-scope="props">
           <span v-if="props.column.field === 'size'">
           <span >{{props.row.size/1000000}}</span>
           </span>
           <span v-else>
-            {{props.formattedRow[props.column.field]}}
+            {{ props.formattedRow[props.column.field] }}
           </span>
         </template>
         </vue-good-table>
@@ -44,13 +47,19 @@
       <span style="display:inline-block; width:35px;"></span>
       <b-button v-if="filesAreChoosen" v-b-modal="addToPlayList-modal" @click="addToPlaylist" variant="outline-primary">Afegir a la Llista de reproducció</b-button>
       <span style="display:inline-block; width:50px;"></span>
-      <b-button v-if="fileIsChoosen" v-b-modal="playnext-modal" @click="playNext" variant="outline-primary" >Reproduïr després</b-button>
+      <b-button v-if="filesAreChoosen" @click="addToPlaylist2()">Francina</b-button>
+
+      <!--<b-button v-if="fileIsChoosen" v-b-modal="playnext-modal" @click="playNext" variant="outline-primary" >Reproduïr després</b-button>-->
     </div>
   </div>
   <div v-if="!seenContent" id="contentUploadView" style="width:800px; margin:0 auto;">
     <ContentUpload></ContentUpload>
     <br>
     <b-button variant="outline-primary" @click="methodUpload">Enrere</b-button>
+  </div>
+  <div v-if="!contentSettings">
+    <ContentSettings :files="multipleRows"></ContentSettings>
+    <b-button variant="outline-primary" @click="methodUploadContentSettings">Enrere</b-button>
   </div>
   <br>
 </div>
@@ -59,11 +68,13 @@
 <script>
 import axios from 'axios';
 import ContentUpload from './ContentUpload.vue';
+import ContentSettings from './ContentSettings.vue';
 
 export default {
   name: 'Content',
   components: {
     ContentUpload,
+    ContentSettings
   },
   /*
       Defines the data used by the component
@@ -77,15 +88,17 @@ export default {
       multipleRows: [],
       previousRow: '',
       files: [],
+      enabled: true,
       seenContent: true,
       fileIsChoosen: false,
       filesAreChoosen: false,
-      imageSource: 'nule',
+      imageSource: '',
       urlRPI: 'http://127.0.0.1:80/content',
       selectedFileID: 0,
       selectedFileName: 0,
       fileToSend: 0,
       duration: '',
+      contentSettings: true,
       columns: [
         {
           label: 'Nom',
@@ -107,6 +120,11 @@ export default {
       console.log(this.imageSource);
       // document.getElementById('preview').alt = path
       // this.$root.$emit('bv::show::modal', 'preview-modal', '#btnShow')
+    },
+    addToPlaylist2() {
+      console.log(this.files)
+      this.contentSettings = !this.contentSettings;
+
     },
     addToPlaylist() {
       let fileName;
@@ -157,6 +175,7 @@ export default {
         this.setNext(fileName, parseInt(inputDuration), 'Image');
       }
     },
+    /*
     addToPlaylistPOST(fname, fduration, ftype) {
       // Save in playlist Controller
       axios({
@@ -210,7 +229,7 @@ export default {
         .catch((error) => {
           alert(error.response.data.message);
         });
-    },
+    },*/
     removeFile() {
       if (this.multipleRows.length !== 0) {
         let i = 0;
@@ -264,11 +283,7 @@ export default {
       this.multipleRows = params.selectedRows;
       console.log('selectionChanged');
       console.log(params.selectedRows);
-      if (params.selectedRows.length !== 0) {
-        this.filesAreChoosen = true;
-      } else {
-        this.filesAreChoosen = false;
-      }
+      this.filesAreChoosen = params.selectedRows.length !== 0;
       // console.log(params.selectedRows[0].name)
     },
     getFiles() {
@@ -287,6 +302,10 @@ export default {
     },
     methodUpload() {
       this.seenContent = !this.seenContent;
+      this.getFiles();
+    },
+    methodUploadContentSettings() {
+      this.contentSettings = !this.contentSettings;
       this.getFiles();
     },
   },
