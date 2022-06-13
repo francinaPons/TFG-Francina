@@ -1,24 +1,55 @@
-# Flask and Vue.js
+# Disseny i implementació d'un sistema de senyalització digital per al CRAI Biblioteca de Matemàtiques i Informàtica II
+### client
+
+Treball de final de Grau d'Enginyeria Informàtica fet per Francina Pons Llabres.
+Amb la col·laboració dels tutors: Eloi Prats i Roger Angela
+## Descripció
+Es tracta de dues aplicacions client-servidor per mostrar contingut multimèdia a una pantalla de la CRAI.
+
+Assegureu-vos de tenir 
+[Node.js](https://nodejs.org/) instalat
 
 
-1. Run the server-side Flask app in one terminal window:
+## Instal·lació
+
+	git clone -projecte de Github-
+	cd client
+    npm install
+    npm run build
+    npm run serve
+    
+## Usar
+
+Accedeix a un navegador a l'adreça http://localhost:8000
+    
+## Dependencies
+
++ [axios](https://www.npmjs.com/package/axios)
++ [Axios](https://www.npmjs.com/package/axios/v/0.21.1)
++ [Bootstrap](https://www.npmjs.com/package/bootstrap/v/4.6.0)
++ [Bootstrap-vue](https://www.npmjs.com/package/bootstrap-vue/v/2.21.2)
++ [Bootstrap-vue-editable-table](https://www.npmjs.com/package/bootstrap-vue-editable-table/v/0.1.6)
++ [Core-js](https://www.npmjs.com/package/core-js/v/3.6.5)
++ [Vue](https://www.npmjs.com/package/vue/v/2.6.11)
++ [Vue-good-table](https://www.npmjs.com/package/vue-good-table/v/2.21.11)
++ [Vue-router](https://www.npmjs.com/package/vue-router/v/3.2.0)
++ [Vue-taggable-select](https://www.npmjs.com/package/vue-taggable-select/v/1.0.1)
++ [Vue2-dropzone](https://www.npmjs.com/package/vue2-dropzone/v/3.6.0)
+
+
+## Servidor
+
+## Requeriments
+Executar la següent comanda per satisfer els requeriments del servidor:
+
+    pip install requirements.txt
+    
+Per executar el servidor Flask:
+Per executar el servidor Flask:
 
     ```sh
     $ cd server
     $ python3.9 -m venv env
     $ source env/bin/activate
-    (env)$ pip install -r requirements.txt
     (env)$ python app.py
     ```
-
-    Navigate to [http://localhost:5000](http://localhost:5000)
-
-2. Run the client-side Vue app in a different terminal window:
-
-    ```sh
-    $ cd client
-    $ npm install
-    $ npm run serve
-    ```
-
-    Navigate to [http://localhost:8080](http://localhost:8080)
