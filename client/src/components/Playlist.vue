@@ -104,7 +104,7 @@
       </div>
         <br>
         <div>
-          <b-modal @hidden="resetModal" @ok="handleOk(tagsPlaylist)"
+          <b-modal class="modal-backdrop fade in"  hide-backdrop aria-hidden="true" @hidden="resetModal" @ok="handleOk(tagsPlaylist)"
                    @show="resetModal"
                    centered
                    id="modal-center"

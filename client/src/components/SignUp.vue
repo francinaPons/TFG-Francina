@@ -30,7 +30,10 @@
       <span style="display:inline-block; width:35px;"></span>
       <b-button v-b-modal="addToPlayList-modal" @click="createUser" variant="outline-primary">Crear un usuari nou</b-button>
       <span style="display:inline-block; width:50px;"></span>
-      <b-modal id="addUser-modal" hide-footer >
+
+
+
+      <b-modal class="modal-backdrop fade in"  hide-backdrop aria-hidden="true" id="addUser-modal" >
         <label for="inputEmail" style="display: flex; margin-bottom: .5rem;color: #0072ce;">Nom d'usuari:</label>
         <b-form-input id="input-live" v-model="usernameToAdd"  aria-describedby="input-live-help input-live-feedback" trim></b-form-input>
         <label for="inputPassword" style="display: flex; margin-bottom: .5rem;color: #0072ce;">Contrasenya</label>
@@ -38,7 +41,11 @@
         <br>
         <b-button v-b-modal="addToPlayList-modal" @click="createAccount" variant="outline-primary">Guardar</b-button>
       </b-modal>
-      <b-modal id="modifyUser-modal" hide-footer>
+
+
+
+
+      <b-modal class="modal-backdrop fade in"  hide-backdrop aria-hidden="true" id="modifyUser-modal" hide-footer>
         <label for="inputEmail" style="display: flex; margin-bottom: .5rem;color: #0072ce;">Nom d'usuari:(pots deixar-ho en blanc si no el vols canviar)</label>
         <b-form-input id="input-live" v-model="usernameToUpdate"  aria-describedby="input-live-help input-live-feedback" trim></b-form-input>
         <label for="inputPassword" style="display: flex; margin-bottom: .5rem;color: #0072ce;">Contrasenya:(pots deixar-ho en blanc si no el vols canviar)</label>

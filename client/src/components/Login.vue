@@ -28,7 +28,7 @@
     </div>
     <br>
   </div>
-    <b-modal ref="addRegisterModal" id="modal-Register-User" title="Create Account" hide-footer>
+    <b-modal class="modal-backdrop fade in"  hide-backdrop aria-hidden="true" ref="addRegisterModal" id="modal-Register-User" title="Create Account" hide-footer>
       <b-form @submit="submitUserRegister" @reset="onResetRegister" v-if="show">
 
         <b-form-group id="input-register-group-1" label="Username:" label-for="input-register-1">

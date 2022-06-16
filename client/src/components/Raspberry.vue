@@ -1,45 +1,46 @@
 <template>
   <div>
     <div id="contentView">
-      <b-row class="justify-content-md-center">
-        <b-col cols="3">
-          <b-button class="btn-danger btn-block" v-on:click="executeScript(1)">
+      <b-row style="padding-bottom:1.5%">
+        <b-col cols="4" />
+        <b-col cols="4" >
+
+          <b-button class="btn-danger btn-block" v-on:click="executeScript(1)" data-toggle="tooltip" data-placement="right" title="Descripció reiniciar">
             Reiniciar Raspberry
           </b-button>
         </b-col>
-        <b-col style="text-align: left">
-          Descripció reiniciar
-        </b-col>
+        <b-col cols="4" />
+
+
       </b-row>
-      <b-row class="justify-content-md-center">
-        <b-col cols="3">
-          <b-button class="btn-danger btn-block" v-on:click="executeScript(2)">
+      <b-row style="padding-bottom:1.5%">
+        <b-col cols="4" />
+        <b-col cols="4" >
+          <b-button class="btn-danger btn-block" v-on:click="executeScript(2)" data-toggle="tooltip" data-placement="right" title="Descripció apagar">
             Apagar Raspberry
           </b-button>
         </b-col>
-        <b-col style="text-align: left">
-          Descripció apagar
-        </b-col>
+        <b-col cols="4" />
+
       </b-row>
-      <b-row class="justify-content-md-center">
-        <b-col cols="3">
-          <b-button class="btn-danger btn-block" v-on:click="executeScript(3)">
+      <b-row style="padding-bottom:1.5%">
+        <b-col cols="4" />
+        <b-col cols="4" >
+          <b-button class="btn-danger btn-block" v-on:click="executeScript(3)" data-toggle="tooltip" data-placement="right" title="Descripció iniciar">
             Iniciar Billboard
           </b-button>
         </b-col>
-        <b-col style="text-align: left">
-          <span class="">Descripció iniciar</span>
-        </b-col>
+        <b-col cols="4" />
+
       </b-row>
-      <b-row class="justify-content-md-center">
-        <b-col cols="3">
-          <b-button class="btn-danger btn-block" v-on:click="executeScript(4)">
+      <b-row  style="padding-bottom:1.5%">
+        <b-col cols="4" />
+        <b-col cols="4">
+          <b-button class="btn-danger btn-block" v-on:click="executeScript(4)" data-toggle="tooltip" data-placement="right" title="Descripció reiniciar">
             Reiniciar Docker
           </b-button>
         </b-col>
-        <b-col style="text-align: left">
-          Descripció reiniciar docker
-        </b-col>
+        <b-col cols="4" />
       </b-row>
     </div>
   </div>

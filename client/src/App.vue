@@ -2,7 +2,7 @@
   <div id="app" style="height:983px;">
     <div align="left">
 
-      <b-modal id="about-modal" hide-footer>
+      <b-modal class="modal-backdrop fade in"  hide-backdrop aria-hidden="true" id="about-modal" hide-footer>
         <label style="display: flex; margin-bottom: .5rem;color: #0072ce;">
           Projecte desenvolupat com a Treball de Final de Grau d'Enginyeria Informàtica
           (Universitat de Barcelona)
