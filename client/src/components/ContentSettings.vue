@@ -19,8 +19,9 @@
         <b-form-input id="input" v-model="newPlaylist"></b-form-input>
       </b-form-group>
     </div>
+    <div v-if="selectedPlaylist !== -1 && selectedPlaylist !== null">
     La playlist conté els següents tags: {{ currentTags }}
-    <b-form-group v-if="selectedPlaylist !== null"
+      <b-form-group v-if="selectedPlaylist !== null"
               class="my-4"
               id="fieldset-2"
               label="Introdueix els tags de la playlist"
@@ -33,6 +34,8 @@
                 :options="allTags"
                 ></vue-taggable-select>
             </b-form-group>
+    </div>
+
     <b-button style="margin: 3%" @click="savePlaylist()">Guardar llista de reproducció</b-button>
   </div>
 </template>

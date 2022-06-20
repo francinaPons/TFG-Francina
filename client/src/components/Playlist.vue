@@ -2,21 +2,15 @@
   <div>
     <div id="contentView" v-if="seenContent">
       <br>
-      <div class="col-3">
+      <div class="col-3 mb-5">
         Mode de reproducció
-        <div style="">
-                <b-form-select :options="options" style="margin-left:1%; width: 150px;"
-                               v-model="selected"
-                               v-on:change="changeMode"></b-form-select>
-                <span style="display:inline-block; width:560px;" v-if="!fileIsChoosen"></span>
-                <span style="display:inline-block; width:460px;" v-if="fileIsChoosen"></span>
-                <div class="mt-3" v-if="selected === 'inter' || selected === 'rndm-inter' ">
-                  Fitxer intercalat:
-                  {{ intercalatedFile }}
-                </div>
-                <br>
-                <br>
-              </div>
+          <b-form-select :options="options" style="margin-left:1%; width: 150px;"
+                         v-model="selected"
+                         v-on:change="changeMode"></b-form-select>
+          <!--<div class="mt-3" v-if="selected === 'inter' || selected === 'rndm-inter' ">
+            Fitxer intercalat:
+            {{ intercalatedFile }}
+          </div>-->
       </div>
       <div class="row">
         <div class="col-3">
@@ -27,6 +21,7 @@
               class="list-group-item"
               @click="updatePlaylist(item)">
               {{ item.name }}
+
               <!--<p>{{ item.tags }} </p>-->
             </b-list-group-item>
           </b-list-group>
