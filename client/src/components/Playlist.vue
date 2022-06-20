@@ -23,6 +23,7 @@
           <b>Playlists disponibles:</b>
           <b-list-group class="list-group">
             <b-list-group-item v-for="item in playlists"
+                               v-bind:key="item.name"
               class="list-group-item"
               @click="updatePlaylist(item)">
               {{ item.name }}
@@ -93,8 +94,8 @@
           </div>
           <div class="row">
         <div class="col">
-           <b-button @click="removeAllFiles" v-if="files.length" variant="danger">
-             Buidar la llista</b-button>
+           <b-button @click="removeList()" variant="danger">
+             Esborrar la llista</b-button>
         </div>
         <!--<div class="col">
           <b-button v-b-modal.modal-center>Guardar Playlist</b-button>
@@ -104,7 +105,7 @@
       </div>
         <br>
         <div>
-          <b-modal class="modal-backdrop fade in"  hide-backdrop aria-hidden="true" @hidden="resetModal" @ok="handleOk(tagsPlaylist)"
+        <!--<b-modal @hidden="resetModal" @ok="handleOk(tagsPlaylist)"
                    @show="resetModal"
                    centered
                    id="modal-center"
@@ -130,17 +131,10 @@
                 :options="tags"
                 ></vue-taggable-select>
             </b-form-group>
-            <!--<p class="my-4">Com vols anomenar aquesta playlist?</p>
-            <b-form-input v-model="playlist_name" placeholder=""></b-form-input>-->
-          </b-modal>
-        <span style="display:inline-block; width:950px;" v-if="!fileIsChoosen"></span>
-        <span style="display:inline-block; width:450px;"
-              v-if="fileIsChoosen && (selected !== 'inter' && selected !== 'rndm-inter')"></span>
-        <span style="display:inline-block; width:150px;"
-              v-if="fileIsChoosen && (selected === 'inter' || selected !== 'rndm-inter')"></span>
+        </b-modal>-->
+
         <b-button @click="removeFile" v-if="fileIsChoosen" variant="danger">
-          Esborrar de la llista</b-button>
-        <span style="display:inline-block; width:35px;"></span>
+          Esborrar fitxer de la llista</b-button>
         <!--<b-button @click="playNext" v-b-modal="addToPlayList-modal"
                   v-if="fileIsChoosen" variant="outline-primary">
           Reproduir després
@@ -148,8 +142,7 @@
 
         <b-button @click="setupPlaylist" variant="outline-primary">
         Reproduir llista
-      </b-button>
-        <span style="display:inline-block; width:50px;"></span>
+        </b-button>
         <b-button @click="setIntercalated"
                   v-b-modal="addToPlayList-modal"
                   v-if="fileIsChoosen && (selected === 'inter' || selected === 'rndm-inter')"
@@ -345,18 +338,40 @@ export default {
         });
     },
     removeFile() {
-      // var id = key + 1
-      this.removeFileREQUEST(this.selectedFileName);
+      axios({
+        method: 'put',
+        url: 'http://127.0.0.1:80/playlists',
+        data: {
+          playlist_name: this.playlist_name,
+          item_name: this.selectedFileName
+        },
+        auth: { username: this.$route.query.token },
+      }).then((res) => {
+        alert("Item esborrat");
+        this.getPlaylists()
+      })
+        .catch((error) => {
+          alert(error.response.data.message);
+        });
+      // this.removeFileREQUEST(this.selectedFileName);
     },
-    removeAllFiles() {
-      let i = 0;
-      this.removeIntercalatedREQUEST();
-      this.intercalatedFile = 'default.mp4';
-      for (i; i < this.files.length; i += 1) {
-        this.removeFileREQUEST(this.files[i].name);
-      }
-      setTimeout(() => this.getFiles(), 2000);
+    removeList() {
+      console.log(this.playlist_name)
+       axios({
+        method: 'delete',
+        url: 'http://127.0.0.1:80/playlists/' + this.playlist_name,
+        data: {
+        },
+        auth: { username: this.$route.query.token },
+      }).then((res) => {
+        this.getPlaylists()
+        alert("Eliminada la playlist " + res.data.playlist.name);
+      })
+      .catch((error) => {
+        alert(error.response.data.message);
+      });
     },
+    /*
     removeFileREQUEST(fName) {
       if (this.previousRow !== '') {
         this.previousRow.event.target.parentElement.bgColor = '';
@@ -385,7 +400,7 @@ export default {
         .catch((error) => {
           alert(error.response.data.message);
         });
-    },
+    },*/
     onRowClick(params) {
       this.imageSource = `/thumbnail/${params.row.name}`;
       this.selectedFileName = params.row.name;
@@ -543,6 +558,7 @@ export default {
       } */
     },
     getPlaylists() {
+      this.playlists = []
       if (Object.keys(this.$route.query.token).length !== 0) {
         axios({
           method: 'get',
@@ -581,6 +597,7 @@ export default {
         method: 'post',
         url: 'http://127.0.0.1:8000/setPlaylist',
         data: {
+          inter: "",
           name: this.playlist_name,
           items: this.files,
           mode: mode,

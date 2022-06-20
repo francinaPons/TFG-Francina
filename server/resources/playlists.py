@@ -38,10 +38,11 @@ class Playlists(Resource):
                 #  TODO: update items instead of create
                 for item in dades['items']:
                     print(item)
-                    new_item = ItemsModel.find_by_name(name=item['name'])
+                    new_item = ItemsModel.find_by_name_duration_priority(name=item['name'], duration=item['duration'],
+                                                                         priority=item['priority'])
                     if new_item is None:
                         new_item = ItemsModel(name=item['name'],
-                                              duration=item['duration'], type=item['type'], priority=item['priority'])
+                                              duration=item['duration'], priority=item['priority'])
                     new_playlist.items.append(new_item)
                 new_playlist.save_to_db()
                 # return {'message': "Playlist amb ['nom': {} ] ja existeix".format(dades['name'])}, 409
@@ -68,6 +69,31 @@ class Playlists(Resource):
             return {'message': "Hi ha hagut un problema amb la petició"}, 400
 
         # return {'message': "Petició processada correctament"}, 200
+
+    @auth.login_required(role='admin')
+    def delete(self, name):
+        try:
+            PlaylistsModel.delete_by_name(name)
+        except:
+            return {'message': "Playlist amb  ['nom': {} ] no trobat".format(name)}, 400
+        return {'message': "Playlist amb ['nom': {} ] esborrada correctament".format(name)}, 200
+
+    @auth.login_required(role='admin')
+    def put(self):
+        try:
+            parser = reqparse.RequestParser()  # create parameters parser from request
+
+            # define al input parameters need and its type
+            parser.add_argument('playlist_name', type=str, required=True, help="This field cannot be left blank")
+            parser.add_argument('item_name', type=str, required=True,
+                                help="This field cannot be left blank")
+
+            dades = parser.parse_args()
+            i = ItemsModel.find_by_name(dades['item_name'])
+            PlaylistsModel.delete_item_by_name(dades['playlist_name'], i)
+        except:
+            return {'message': "Item amb  ['nom': {} ] no trobat".format(dades['item_name'])}, 400
+        return {'message': "Item amb ['nom': {} ] esborrat correctament".format(dades['item_name'])}, 200
 
 
 class PlaylistsList(Resource):

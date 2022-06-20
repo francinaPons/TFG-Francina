@@ -88,7 +88,7 @@ export default {
         },
         auth: { username: this.$route.query.token },
       }).then((res) => {
-        alert("Afegida la playlist " + res.data.playlist.name);
+          alert("Afegida la playlist " + res.data.playlist.name);
       })
         .catch((error) => {
           alert(error.response.data.message);

@@ -68,7 +68,17 @@ class PlaylistsModel(db.Model):
             db.session.delete(PlaylistsModel.query.filter_by(name=name).first())
             db.session.commit()
         except:
-            raise Exception("Error deleting entry by priority in database")
+            raise Exception("Error deleting playlist in database")
+
+    @classmethod
+    def delete_item_by_name(cls, name_playlist, item):
+        try:
+            # saving data
+            p = PlaylistsModel.query.filter_by(name=name_playlist).first()
+            p.items.remove(item)
+            db.session.commit()
+        except:
+            raise Exception("Error deleting playlist in database")
 
     @classmethod
     def retrieveAllEntries(cls):

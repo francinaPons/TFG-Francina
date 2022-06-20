@@ -1,4 +1,5 @@
 from db import db
+from checktype import *
 import json
 
 
@@ -13,9 +14,10 @@ class ItemsModel(db.Model):
     path = db.Column(db.String(8), nullable=False)
     played = db.Column(db.Integer)
 
-    def __init__(self, name, duration, type, priority):
+    def __init__(self, name, duration, priority):
         self.name = name
-        self.type = type
+        chck = checkType(name)
+        self.type = chck
         self.priority = priority
         self.duration = duration
         self.path = "./static/" + name
@@ -51,6 +53,10 @@ class ItemsModel(db.Model):
     @classmethod
     def find_by_name(cls, name):
         return ItemsModel.query.filter_by(name=name).first()
+
+    @classmethod
+    def find_by_name_duration_priority(cls, name, duration, priority):
+        return ItemsModel.query.filter_by(name=name, duration=duration, priority=priority).first()
 
     @classmethod
     def delete_by_name(cls, name):
