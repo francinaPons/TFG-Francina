@@ -1,13 +1,14 @@
 <template>
   <div>
     <div id="contentView" v-if="seenContent">
-      <br>
       <div class="col-3 mb-5">
         Mode de reproducció
-          <b-form-select :options="options" style="margin-left:1%; width: 150px;"
-                         v-model="selected"
-                         v-on:change="changeMode"></b-form-select>
-          <!--<div class="mt-3" v-if="selected === 'inter' || selected === 'rndm-inter' ">
+        <b-form-select
+          :options="options"
+          style="margin-left: 1%; width: 150px"
+          v-model="selected"
+        ></b-form-select>
+        <!--<div class="mt-3" v-if="selected === 'inter' || selected === 'rndm-inter' ">
             Fitxer intercalat:
             {{ intercalatedFile }}
           </div>-->
@@ -16,10 +17,12 @@
         <div class="col-3">
           <b>Playlists disponibles:</b>
           <b-list-group class="list-group">
-            <b-list-group-item v-for="item in playlists"
-                               v-bind:key="item.name"
+            <b-list-group-item
+              v-for="item in playlists"
+              v-bind:key="item.name"
               class="list-group-item"
-              @click="updatePlaylist(item)">
+              @click="updatePlaylist(item)"
+            >
               {{ item.name }}
 
               <!--<p>{{ item.tags }} </p>-->
@@ -32,51 +35,76 @@
         </div>
         <div class="col-9">
           <div style="">
-            <div style="max-width: 90%;"
-                 v-if="selected !== 'rndm' && selected !== 'rndm-inter'">
-              <vue-good-table :columns="columns" :pagination-options="{enabled: true, perPage: 25,
+            <div
+              style="max-width: 90%"
+              v-if="selected !== 'rndm' && selected !== 'rndm-inter'"
+            >
+              <vue-good-table
+                :columns="columns"
+                :pagination-options="{enabled: true, perPage: 25,
         nextLabel: 'Següent',
         prevLabel: 'Anterior',
         rowsPerPageLabel: 'elements per pàgina',
         ofLabel: 'de',
         pageLabel: 'pàgina', // for 'pages' mode
-        allLabel: 'Tots',}" :rows="files" :search-options="{enabled: true}"
-                              :selected="enabled"
-                              @on-row-click="onRowClick" max-height="300px" style="color: #0032ce;">
+        allLabel: 'Tots',}"
+                :rows="files"
+                :search-options="{enabled: true}"
+                :selected="enabled"
+                @on-row-click="onRowClick"
+                max-height="300px"
+                style="color: #0032ce"
+              >
                 <template slot="table-row" slot-scope="props">
-          <span v-if="props.column.field === 'duration'">
-          <span v-if="props.row.duration !== null">{{props.row.duration/1000}}</span>
-          </span>
+                  <span v-if="props.column.field === 'duration'">
+                    <span
+                      v-if="props.row.duration !== null"
+                      >{{props.row.duration/1000}}</span
+                    >
+                  </span>
                   <span v-else>
-            {{props.formattedRow[props.column.field]}}
-          </span>
+                    {{props.formattedRow[props.column.field]}}
+                  </span>
                 </template>
               </vue-good-table>
             </div>
-            <div style="width: 90%; margin: auto auto auto 1%;"
-                 v-if="selected === 'rndm' || selected === 'rndm-inter'">
-              <vue-good-table :columns="columnsRandom"
-                              :pagination-options="{enabled: true, perPage: 25,
+            <div
+              style="width: 90%; margin: auto auto auto 1%"
+              v-if="selected === 'rndm' || selected === 'rndm-inter'"
+            >
+              <vue-good-table
+                :columns="columnsRandom"
+                :pagination-options="{enabled: true, perPage: 25,
                               nextLabel: 'Següent',
                               prevLabel: 'Anterior',
                               rowsPerPageLabel: 'elements per pàgina',
                               ofLabel: 'de',
                               pageLabel: 'pàgina', // for 'pages' mode
-                              allLabel: 'Tots',}" :rows="files" :search-options="{enabled: true}"
-                              :selected="enabled" @on-row-click="onRowClick"
-                              max-height="300px" style="color: #0032ce;">
+                              allLabel: 'Tots',}"
+                :rows="files"
+                :search-options="{enabled: true}"
+                :selected="enabled"
+                @on-row-click="onRowClick"
+                max-height="300px"
+                style="color: #0032ce"
+              >
                 <template slot="table-row" slot-scope="props">
-          <span v-if="props.column.field === 'duration'">
-          <span v-if="props.row.duration !== null">{{props.row.duration/1000}}</span>
-          </span>
+                  <span v-if="props.column.field === 'duration'">
+                    <span
+                      v-if="props.row.duration !== null"
+                      >{{props.row.duration/1000}}</span
+                    >
+                  </span>
                   <span v-if="props.column.field === 'played'">
-          <span v-if="props.row.played === 1">{{"Si"}}</span>
-          <span v-if="props.row.played === 0">{{"En Cua"}}</span>
-          </span>
-                  <span v-if="props.column.field !== 'duration'
-                  && props.column.field !== 'played' ">
-            {{ props.formattedRow[props.column.field] }}
-          </span>
+                    <span v-if="props.row.played === 1">{{"Si"}}</span>
+                    <span v-if="props.row.played === 0">{{"En Cua"}}</span>
+                  </span>
+                  <span
+                    v-if="props.column.field !== 'duration'
+                  && props.column.field !== 'played' "
+                  >
+                    {{ props.formattedRow[props.column.field] }}
+                  </span>
                 </template>
               </vue-good-table>
             </div>
@@ -87,19 +115,10 @@
                      width="300"></b-img>
             </div>-->
           </div>
-          <div class="row">
-        <div class="col">
-           <b-button @click="removeList()" variant="danger">
-             Esborrar la llista</b-button>
-        </div>
-        <!--<div class="col">
-          <b-button v-b-modal.modal-center>Guardar Playlist</b-button>
-        </div>-->
-      </div>
+          <!--<b-button v-b-modal.modal-center>Guardar Playlist</b-button>-->
         </div>
       </div>
-        <br>
-        <div>
+      <div>
         <!--<b-modal @hidden="resetModal" @ok="handleOk(tagsPlaylist)"
                    @show="resetModal"
                    centered
@@ -127,28 +146,49 @@
                 ></vue-taggable-select>
             </b-form-group>
         </b-modal>-->
-
+        <b-button @click="removeList()" variant="danger">
+          Esborrar la llista</b-button
+        >
         <b-button @click="removeFile" v-if="fileIsChoosen" variant="danger">
-          Esborrar fitxer de la llista</b-button>
+          Esborrar fitxer de la llista</b-button
+        >
         <!--<b-button @click="playNext" v-b-modal="addToPlayList-modal"
                   v-if="fileIsChoosen" variant="outline-primary">
           Reproduir després
         </b-button>-->
 
-        <b-button @click="setupPlaylist" variant="outline-primary">
-        Reproduir llista
-        </b-button>
-        <b-button @click="setIntercalated"
-                  v-b-modal="addToPlayList-modal"
-                  v-if="fileIsChoosen && (selected === 'inter' || selected === 'rndm-inter')"
-                  variant="outline-primary">
-          Seleccionar com a
-          fitxer intercalat
-        </b-button>
-        <span style="display:inline-block; width:50px;"></span>
+        <b-button @click="selected === 'inter' || selected === 'rndm-inter'
+        ? $bvModal.show('modal-1'): setupPlaylist()">
+          Reproduir llista</b-button>
+        <b-modal id="modal-1" v-if="selected === 'inter'" title="Fitxer intercalat" @show="resetModal"
+          @hidden="resetModal"
+          @ok="handleOk"
+          class="modal-backdrop fade in"  hide-backdrop aria-hidden="true">
+          <p class="my-4">Selecciona el fitxer intercalat</p>
+          <b-form-select
+          :options="files"
+          text-field="name"
+          value-field="name"
+          v-model="selectedIn"
+        >
+
+          </b-form-select>
+          <!--<b-form-select v-model="selectedIn" :options="files"
+            text-field="name">
+            <b-form-select-option :value="null">Fitxer "default"</b-form-select-option>
+          </b-form-select>-->
+
+        </b-modal>
+        <!--<b-button
+          @click="setIntercalated"
+          v-b-modal="addToPlayList-modal"
+          v-if="fileIsChoosen && (selected === 'inter' || selected === 'rndm-inter')"
+          variant="outline-primary"
+        >
+          Seleccionar com a fitxer intercalat
+        </b-button>-->
       </div>
     </div>
-    <br>
   </div>
 </template>
 
@@ -225,6 +265,8 @@ export default {
       tags: [],
       tagsPlaylist: [],
       playlists: [],
+      selectedIn: '',
+
     };
   },
   methods: {
@@ -295,23 +337,25 @@ export default {
         auth: { username: this.$route.query.token },
       }).then((res) => {
         alert(res.data.message);
-        this.getIntercalatedFile();
       })
         .catch((error) => {
           alert(error.response.data.message);
         });
     },
-    handleOk(tagsPlaylist) {
-      // Trigger submit handler
-      console.log(tagsPlaylist);
-      this.savePlaylist(tagsPlaylist);
-      this.$nextTick(() => {
-        this.$bvModal.hide('modal-prevent-closing');
-      });
-      this.resetModal();
-    },
     resetModal() {
-      this.name = '';
+        this.intercalatedSelector = ''
+    },
+    handleOk(bvModalEvent) {
+      console.log(this.playlist_name)
+      console.log(this.selectedIn)
+      console.log(this.files)
+      if (this.selectedIn) {
+        this.intercalatedFile = this.selectedIn
+      }
+      else {
+        this.intercalatedFile = ""
+      }
+      this.setupPlaylist()
     },
     savePlaylist(tagsPlaylist) {
       // console.log(this.files)
@@ -474,7 +518,6 @@ export default {
         auth: { username: this.$route.query.token },
       }).then((res) => {
         console(res.data.message);
-        this.getIntercalatedFile();
         // this.changeTable()
       })
         .catch((error) => {
@@ -584,7 +627,6 @@ export default {
     },
     setupPlaylist() {
       let mode = 'seq'
-      console.log(this.name)
       if (this.selected != null) {
         mode = this.selected
       }
@@ -592,7 +634,7 @@ export default {
         method: 'post',
         url: 'http://127.0.0.1:8000/setPlaylist',
         data: {
-          inter: "",
+          inter: this.intercalatedFile,
           name: this.playlist_name,
           items: this.files,
           mode: mode,
@@ -615,10 +657,10 @@ export default {
 /* eslint-enable no-alert, no-console */
 </script>
 <style scoped>
-  .list-group{
-    max-height: 75%;
-    overflow:scroll;
-    -webkit-overflow-scrolling: touch;
-    cursor: pointer;
-  }
+.list-group {
+  max-height: 75%;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  cursor: pointer;
+}
 </style>
