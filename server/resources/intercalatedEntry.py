@@ -1,18 +1,11 @@
-import json
+from flask import make_response
 
-from flask import Flask, make_response,request
-from flask_restful import Resource, Api
-from flask import request, redirect
-from flask_restful import reqparse
-from werkzeug.utils import secure_filename
-import os
-import datetime
-from models.playlist import PlaylistModel
-from variable_store import *
-from checktype import *
-from models.accounts import g, AccountsModel
-from models.accounts import auth
-from resources.nextByMode import *
+from server.checktype import checkType
+from server.models.accounts import auth
+from server.resources.nextByMode import *
+
+from server.variable_store import *
+
 
 class IntercalatedEntry(Resource):
 
@@ -20,8 +13,8 @@ class IntercalatedEntry(Resource):
         intercalated_metadata = getVarFromFile('intercalated_metadata')
         next = json.loads(json.dumps(intercalated_metadata))
         return {'metadata': next}, 200
-        
-    @auth.login_required()  
+
+    @auth.login_required()
     def post(self):
         parser = reqparse.RequestParser()
         # define al input parameters need and its type
@@ -41,7 +34,7 @@ class IntercalatedEntry(Resource):
         return {'message': "Petició processada correctament"}, 200
 
 
-    @auth.login_required()  
+    @auth.login_required()
     def delete(self):
         setVarFromFile('intercalated_metadata', {'path': "./static/default.mp4", 'duration': 0, 'type': 'video'})
         return {'message': "Petició processada correctament"}, 200

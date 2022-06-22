@@ -1,7 +1,9 @@
-from flask import Flask, make_response, request
-from resources.nextByMode import *
-from models.content import ContentModel
-from models.accounts import auth
+from flask import Flask, make_response
+from flask_restful import Resource, reqparse
+
+from server.checktype import checkType
+from server.resources.nextByMode import *
+from server.models.accounts import auth
 
 
 class PlaylistEntry(Resource):

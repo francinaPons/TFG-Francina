@@ -3,9 +3,9 @@ from flask_restful import Resource
 from flask import request
 from werkzeug.utils import secure_filename
 import os
-from models.content import ContentModel
-from thumbnailGenerator import *
-from models.accounts import auth
+from server.models.content import ContentModel
+from server.thumbnailGenerator import *
+from server.models.accounts import auth
 
 class Content(Resource):
 

@@ -1,8 +1,8 @@
 from flask_restful import Resource, reqparse
-from models.playlist_names import PlaylistsModel
-from models.tags import TagsModel
-from models.items import ItemsModel
-from models.accounts import auth
+from server.models.playlist_names import PlaylistsModel
+from server.models.tags import TagsModel
+from server.models.items import ItemsModel
+from server.models.accounts import auth
 
 
 class Playlists(Resource):
@@ -60,7 +60,7 @@ class Playlists(Resource):
                     new_item = ItemsModel.find_by_name(name=item['name'])
                     if new_item is None:
                         new_item = ItemsModel(name=item['name'],
-                                              duration=item['duration'], type=item['type'], priority=item['priority'])
+                                              duration=item['duration'], priority=item['priority'])
                     new_playlist.items.append(new_item)
                 new_playlist.save_to_db()
                 return {'playlist': new_playlist.json()}, 200

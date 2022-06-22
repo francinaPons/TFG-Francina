@@ -1,9 +1,11 @@
 import json
-from passlib.apps import custom_app_context as pwd_context
-from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
-from db import db, secret_key
-from flask_httpauth import HTTPBasicAuth
+
 from flask import g, current_app
+from flask_httpauth import HTTPBasicAuth
+from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
+from passlib.apps import custom_app_context as pwd_context
+
+from server.db import db
 
 auth = HTTPBasicAuth()
 

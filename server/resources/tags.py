@@ -1,8 +1,7 @@
-from flask import Flask, make_response, request
+from flask_restful import Resource, reqparse
 
-from models.tags import TagsModel
-from resources.nextByMode import *
-from models.accounts import auth
+from server.models.tags import TagsModel
+from server.models.accounts import auth
 
 
 class Tags(Resource):

@@ -1,13 +1,6 @@
-from flask import Flask
-from flask_restful import Resource, Api, reqparse
-from db import db
-from flask_migrate import Migrate
-import json
-from json import JSONEncoder
-from models.accounts import AccountsModel
-from flask_httpauth import HTTPBasicAuth
-from models.accounts import g
-from models.accounts import auth
+from flask_restful import Resource, reqparse
+from server.models.accounts import AccountsModel
+from server.models.accounts import auth
 
 
 class Accounts(Resource):

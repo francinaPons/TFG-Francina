@@ -1,0 +1,17 @@
+Flask==1.1.2
+redis==3.4.1
+gunicorn>=19,<20
+Flask-Cors==3.0.8
+Flask-Session==0.3.2
+Flask-RESTful==0.3.8 
+Flask-SQLAlchemy==2.4.1
+Flask-Migrate==2.5.3
+Flask-Script<=2.0.6
+Flask-Passlib==0.1
+Flask-HTTPAuth==4.0.0
+passlib<=1.7.2
+itsdangerous==1.1.0
+Jinja2==2.11.2
+MarkupSafe==2.0.1
+werkzeug==2.0.3
+moviepy==1.0.3

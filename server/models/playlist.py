@@ -1,8 +1,8 @@
-from flask_restful import Api
-from models.content import ContentModel
-from db import db
 import json
+
 from sqlalchemy.orm import relationship
+
+from server.db import db
 
 
 class PlaylistModel(db.Model):

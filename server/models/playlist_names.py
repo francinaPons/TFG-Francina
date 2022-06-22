@@ -1,7 +1,6 @@
-from db import db
+from server.db import db
 import json
 
-from flask import jsonify
 
 playlist_items = db.Table('playlist_items',
                           db.Column('playlist_id', db.Integer, db.ForeignKey('playlist_names.id'), primary_key=True),

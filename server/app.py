@@ -1,18 +1,16 @@
-from db import db, secret_key
+from server.db import db, secret_key
 from flask import Flask
 from flask import jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate, MigrateCommand
 from flask_restful import Api
 from flask_script import Manager
-from resources.accounts import Accounts, AccountsList
-from resources.content import Content
-from resources.items import Items, ItemsList
-from resources.login import Login
-from resources.mode import Mode
-from resources.playlist import Playlist
-from resources.playlists import PlaylistsList, Playlists
-from resources.tags import Tags, TagsList
+from server.resources.accounts import Accounts, AccountsList
+from server.resources.content import Content
+from server.resources.items import Items, ItemsList
+from server.resources.login import Login
+from server.resources.playlists import PlaylistsList, Playlists
+from server.resources.tags import Tags, TagsList
 
 DEBUG = True
 
@@ -44,14 +42,12 @@ api.add_resource(Content, '/content/<int:id>', '/content')
 api.add_resource(Accounts, '/account/<string:username>', '/account')
 api.add_resource(AccountsList, '/accounts')
 api.add_resource(Login, '/login')
-# api.add_resource(Playlist, '/playlist/<string:name>', '/playlist')
 api.add_resource(Playlists, '/playlists/<string:name>', '/savePlaylist', '/playlists')
 api.add_resource(PlaylistsList, '/playlistslist')
 api.add_resource(ItemsList, '/items')
 api.add_resource(Items, '/item')
 api.add_resource(TagsList, '/tags')
 api.add_resource(Tags, '/tag')
-# api.add_resource(Mode, '/mode')
 
 
 # sanity check route

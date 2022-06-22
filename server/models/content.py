@@ -1,9 +1,6 @@
-
-from flask_restful import Api
-
-from db import db
 import json
 
+from server.db import db
 
 
 class ContentModel(db.Model):
