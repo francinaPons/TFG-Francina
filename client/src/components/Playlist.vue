@@ -37,7 +37,6 @@
           <div style="">
             <div
               style="max-width: 90%"
-              v-if="selected !== 'rndm' && selected !== 'rndm-inter'"
             >
               <vue-good-table
                 :columns="columns"
@@ -68,46 +67,7 @@
                 </template>
               </vue-good-table>
             </div>
-            <div
-              style="width: 90%; margin: auto auto auto 1%"
-              v-if="selected === 'rndm' || selected === 'rndm-inter'"
-            >
-              <vue-good-table
-                :columns="columnsRandom"
-                :pagination-options="{enabled: true, perPage: 25,
-                              nextLabel: 'Següent',
-                              prevLabel: 'Anterior',
-                              rowsPerPageLabel: 'elements per pàgina',
-                              ofLabel: 'de',
-                              pageLabel: 'pàgina', // for 'pages' mode
-                              allLabel: 'Tots',}"
-                :rows="files"
-                :search-options="{enabled: true}"
-                :selected="enabled"
-                @on-row-click="onRowClick"
-                max-height="300px"
-                style="color: #0032ce"
-              >
-                <template slot="table-row" slot-scope="props">
-                  <span v-if="props.column.field === 'duration'">
-                    <span
-                      v-if="props.row.duration !== null"
-                      >{{props.row.duration/1000}}</span
-                    >
-                  </span>
-                  <span v-if="props.column.field === 'played'">
-                    <span v-if="props.row.played === 1">{{"Si"}}</span>
-                    <span v-if="props.row.played === 0">{{"En Cua"}}</span>
-                  </span>
-                  <span
-                    v-if="props.column.field !== 'duration'
-                  && props.column.field !== 'played' "
-                  >
-                    {{ props.formattedRow[props.column.field] }}
-                  </span>
-                </template>
-              </vue-good-table>
-            </div>
+
             <!--<div>
               <span style="display:inline-block; width:50px;"></span>
               <b-img alt="Image 1" fluid height="200" thumbnail
@@ -115,7 +75,6 @@
                      width="300"></b-img>
             </div>-->
           </div>
-          <!--<b-button v-b-modal.modal-center>Guardar Playlist</b-button>-->
         </div>
       </div>
       <div>
@@ -171,7 +130,7 @@
           value-field="name"
           v-model="selectedIn"
         >
-
+            <b-form-select-option :value="null">Fitxer "default"</b-form-select-option>
           </b-form-select>
           <!--<b-form-select v-model="selectedIn" :options="files"
             text-field="name">
@@ -248,10 +207,6 @@ export default {
           label: 'Durada en segons (només Imatges)',
           field: 'duration',
           type: 'number',
-        },
-        {
-          label: 'Reproduït',
-          field: 'played',
         },
       ],
       selected: 'seq',
@@ -587,6 +542,7 @@ export default {
       console.log(playlist);
       this.files = playlist.items
       this.playlist_name = playlist.name
+      this.fileIsChoosen = false
       // const obj = arr.find(({ data }) => data === name);
       // console.log(obj);
       /* for (let i = 0; i < this.playlists.length; i += 1) {
