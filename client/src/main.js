@@ -6,6 +6,7 @@ import VueTaggableSelect from 'vue-taggable-select';
 import App from './App.vue';
 import router from './router';
 import 'bootstrap/dist/css/bootstrap.css';
+import './assets/application.css';
 
 Vue.component('vue-taggable-select', VueTaggableSelect);
 

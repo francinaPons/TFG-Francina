@@ -34,9 +34,9 @@
 
 
       <b-modal class="modal-backdrop fade in"  hide-backdrop aria-hidden="true" id="addUser-modal" >
-        <label for="inputEmail" style="display: flex; margin-bottom: .5rem;color: #0072ce;">Nom d'usuari:</label>
+        <label for="inputEmail" style="display: flex; margin-bottom: .5rem;">Nom d'usuari:</label>
         <b-form-input id="input-live" v-model="usernameToAdd"  aria-describedby="input-live-help input-live-feedback" trim></b-form-input>
-        <label for="inputPassword" style="display: flex; margin-bottom: .5rem;color: #0072ce;">Contrasenya</label>
+        <label for="inputPassword" style="display: flex; margin-bottom: .5rem;">Contrasenya</label>
         <b-form-input type="password" id="input-live-password" v-model="passwordToAdd"  aria-describedby="input-live-help input-live-feedback" trim></b-form-input>
         <br>
         <b-button v-b-modal="addToPlayList-modal" @click="createAccount" variant="outline-primary">Guardar</b-button>

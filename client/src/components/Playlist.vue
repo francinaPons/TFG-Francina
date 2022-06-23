@@ -117,7 +117,7 @@
         </b-button>-->
 
         <b-button @click="selected === 'inter' || selected === 'rndm-inter'
-        ? $bvModal.show('modal-1'): setupPlaylist()">
+        ? $bvModal.show('modal-1'): setupPlaylist()" variant="outline-primary">
           Reproduir llista</b-button>
         <b-modal id="modal-1" v-if="selected === 'inter'" title="Fitxer intercalat" @show="resetModal"
           @hidden="resetModal"

@@ -36,7 +36,7 @@
             </b-form-group>
     </div>
 
-    <b-button style="margin: 3%" @click="savePlaylist()">Guardar llista de reproducció</b-button>
+    <b-button style="margin: 3%" class="btn-primary" @click="savePlaylist()">Guardar llista de reproducció</b-button>
   </div>
 </template>
 

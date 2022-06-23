@@ -1,11 +1,11 @@
 <template>
 <div>
-  <div class="container" style=" background-color:white; color:#0072ce; border-radius: 6px;  margin-top: 2%; padding-right: 0px; padding-left: 0px;" v-if="logged">
-    <b-tabs content-class="mt-3">
+  <div class="container" style="overflow-scrolling: auto"  v-if="logged">
+    <b-tabs content-class="mt-5">
       <b-tab title="Contingut">
         <Content></Content>
       </b-tab>
-      <b-tab title="Llista de reproducció" active>
+      <b-tab title="Llistes de reproducció" active>
         <Playlist></Playlist>
       </b-tab>
       <b-tab title="Gestionar usuaris" v-if="is_admin">
@@ -22,7 +22,7 @@
       </b-tab>
     </b-tabs>
   </div>
-  <div class="container" style="background-color:white; color:#0072ce; border-radius: 6px; padding: 5%" v-if="!logged" >
+  <div class="container" style="max-width: 30%" v-if="!logged" >
     <Login></Login>
   </div>
 </div>
@@ -73,3 +73,10 @@ export default {
   },
 };
 </script>
+
+<style>
+  .container {
+    height: auto;
+    color: black;
+  }
+</style>

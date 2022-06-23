@@ -1,0 +1,38 @@
+#input.form-control {
+    border-color: #0072CE;
+}
+.form-control {
+    border: 1px solid #0072CE;
+}
+
+.custom-select {
+    border-color: #0072CE;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #0072CE !important;
+    border-color: #0072CE;
+}
+
+.btn-outline-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    border-color: #0072CE;
+}
+#label {
+    color: black;
+}
+
+.modal-content, .modal-body {
+    color: black;
+}
+
+:root {
+    --primary: #0072CE ;
+}
+
+.navbar {
+    background-color: #0072CE;
+}
+
+.nav, .nav-item, .nav-link {
+    color: #0072CE;
+}

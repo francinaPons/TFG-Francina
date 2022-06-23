@@ -33,23 +33,17 @@
           </span>
         </template>
         </vue-good-table>
-      </div>
+        <div style="margin-top: 2rem; display: flex; align-content: center; justify-content: space-around">
+          <b-button variant="outline-primary" @click="methodUpload">Afegir Contingut</b-button>
+        <b-button v-if="filesAreChoosen" variant="danger" @click="removeFile">Esborrar els fitxers seleccionats</b-button>
+        <b-button variant="outline-primary"v-if="filesAreChoosen" @click="addToPlaylist2()">Afegir a una llista de reproducció</b-button>
+
+        </div>
+        </div>
       <div>
         <span style="display:inline-block; width:50px;"></span>
         <b-img thumbnail fluid v-if="fileIsChoosen" v-bind:src=imageSource alt="Image 1" width="300" height="200"></b-img>
       </div>
-    </div>
-    <div style="margin:0 auto;">
-      <br>
-      <b-button variant="outline-primary" @click="methodUpload">Afegir Contingut</b-button>
-      <span style="display:inline-block; width:115px;"></span>
-      <b-button v-if="filesAreChoosen" variant="danger" @click="removeFile">Esborrar els fitxers seleccionats</b-button>
-      <span style="display:inline-block; width:35px;"></span>
-      <!--<b-button v-if="filesAreChoosen" v-b-modal="addToPlayList-modal" @click="addToPlaylist" variant="outline-primary">Afegir a la Llista de reproducció</b-button>
-      <span style="display:inline-block; width:50px;"></span>-->
-      <b-button v-if="filesAreChoosen" @click="addToPlaylist2()">Afegir a una llista de reproducció</b-button>
-
-      <!--<b-button v-if="fileIsChoosen" v-b-modal="playnext-modal" @click="playNext" variant="outline-primary" >Reproduïr després</b-button>-->
     </div>
   </div>
   <div v-if="!seenContent" id="contentUploadView" style="width:800px; margin:0 auto;">

@@ -1,8 +1,10 @@
 <template>
-  <div id="login">
-    <div id="loginDiv">
-
+  <div id="login" style="margin-top: 5rem">
     <h4 style="font-weight: bold;color: #0072ce;">Inicia sessió</h4>
+    <p style="font-size: small; text-align: left">Identifiqueu-vos amb el nom d'usuari i la contrasenya. Començareu una sessió
+      que us donarà accés als serveis de l'aplicació de Control
+      del sistema de senyalització digital per al CRAI Biblioteca de Matemàtiques i Informàtica
+    </p>
 
     <div class="form-group row">
       <label class="col-sm-12 col-form-label" style="text-align: left">Nom d'usuari:</label>
@@ -20,14 +22,11 @@
         <input type="password" id="inputPassword" class="form-control" placeholder="Contrasenya" required v-model="password">
       </div>
     </div>
-    <br>
     <div>
       <br>
       <b-button style="width: 40%;" @click="checkLogin"
-                variant="outline-primary">Iniciar Sessió</b-button>
+                variant="outline-primary">Entra</b-button>
     </div>
-    <br>
-  </div>
     <b-modal class="modal-backdrop fade in"  hide-backdrop aria-hidden="true" ref="addRegisterModal" id="modal-Register-User" title="Create Account" hide-footer>
       <b-form @submit="submitUserRegister" @reset="onResetRegister" v-if="show">
 
