@@ -1,3 +1,4 @@
+from server.checktype import checkType
 from server.db import db
 import json
 

@@ -36,3 +36,7 @@
 .nav, .nav-item, .nav-link {
     color: #0072CE;
 }
+
+.tab-content {
+    margin-top: 2%;
+}

@@ -1,8 +1,6 @@
 <template>
   <div class="contentUploadDiv">
-    <br>
     <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" class="dropzone dz-clickable" @vdropzone-complete="afterComplete" @vdropzone-complete-multiple="afterCompleteAll"></vue-dropzone>
-    <br>
     <b-button v-on:click="sendFiles()" variant="outline-primary">Enviar tots els fitxers</b-button>
     <b-button  @click="removeAllFiles" variant="outline-primary">Esborrar tots els fitxers</b-button>
   </div>

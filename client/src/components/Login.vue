@@ -15,15 +15,12 @@
     </div>
 
     <div class="form-group row">
-      <br>
-      <br>
       <label for="inputPassword" class="col-sm-12 col-form-label" style="text-align: left"> Contrasenya:</label>
       <div class="col-sm-12">
         <input type="password" id="inputPassword" class="form-control" placeholder="Contrasenya" required v-model="password">
       </div>
     </div>
     <div>
-      <br>
       <b-button style="width: 40%;" @click="checkLogin"
                 variant="outline-primary">Entra</b-button>
     </div>

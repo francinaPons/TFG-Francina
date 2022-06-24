@@ -2,7 +2,6 @@
 <div >
     <h1>Gestionar Usuaris:</h1>
 
-    <br>
     <div style="display: flex">
       <div style="margin: auto;">
         <vue-good-table style="color: #0032ce;" :selected="enabled" :columns="columns" :rows="usersList"  max-height="300px" :search-options="{enabled: true}" :pagination-options="{enabled: true, perPage: 5,
@@ -25,7 +24,6 @@
       </div>
     </div>
     <div style="margin:0 auto;">
-      <br>
       <b-button v-if="userIsChoosen" variant="danger" @click="removeAccount">Esborrar l'usuari</b-button>
       <span style="display:inline-block; width:35px;"></span>
       <b-button v-b-modal="modifyUser-modal" v-if="userIsChoosen" variant="outline-primary" @click="updateAccountModal">Modificar l'usuari</b-button>

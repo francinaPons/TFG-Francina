@@ -1,11 +1,10 @@
 <template>
   <div>
     <h1>Llistes de reproducció:</h1>
-      <br>
     <div id="contentView" v-if="seenContent">
       <div class="row" style="margin-bottom: 2%">
         <div class="col-3">
-          Mode de reproducció
+          Tria el mode de reproducció
         </div>
 
         <div class="col-9">
@@ -42,7 +41,7 @@
 <!--      </div>-->
       <div class="row">
         <div class="col-3">
-          <b>Playlists disponibles:</b>
+          <b>Llistes disponibles:</b>
           <b-list-group class="list-group">
             <b-list-group-item
               v-for="item in playlists"
@@ -104,7 +103,7 @@
           </div>
         </div>
       </div>
-      <div>
+      <div class="row" style="display: flex; justify-content: space-around" >
         <!--<b-modal @hidden="resetModal" @ok="handleOk(tagsPlaylist)"
                    @show="resetModal"
                    centered
@@ -145,7 +144,10 @@
 
         <b-button @click="selected === 'inter' || selected === 'rndm-inter'
         ? $bvModal.show('modal-1'): setupPlaylist()" variant="outline-primary">
-          Reproduir llista</b-button>
+          <b-icon-play></b-icon-play>
+          Reproduir llista
+        </b-button>
+
         <b-modal id="modal-1" v-if="selected === 'inter'" title="Fitxer intercalat" @show="resetModal"
           @hidden="resetModal"
           @ok="handleOk"

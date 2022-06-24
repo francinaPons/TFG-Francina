@@ -2,10 +2,8 @@
 <div >
     <div>
       <h1>Tancar la sessió</h1>
-      <br>
       <b-button  variant="danger" @click="methodLogOut">Tancar</b-button>
     </div>
-    <br>
 </div>
 </template>
 

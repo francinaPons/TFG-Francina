@@ -19,8 +19,10 @@
         <b-form-input id="input" v-model="newPlaylist"></b-form-input>
       </b-form-group>
     </div>
-    <div v-if="selectedPlaylist !== -1 && selectedPlaylist !== null">
-    La playlist conté els següents tags: {{ currentTags }}
+    <div v-if=" selectedPlaylist !== null">
+      <div v-if="selectedPlaylist !== -1">
+        La playlist conté els següents tags: {{ currentTags }}
+      </div>
       <b-form-group v-if="selectedPlaylist !== null"
               class="my-4"
               id="fieldset-2"

@@ -1,22 +1,27 @@
 <template>
   <div>
-    <div id="contentView">
+    <h1>Llistes de reproducció:</h1>
+    <h6 style="max-width: 60%; margin: auto">
+        Aquests botons serveixen per configurar la Raspberry sense haver-hi d'accedir físicament.
+        Vés en compte a l'hora d'executar alguna d'aquestes instruccions.
+      </h6>
+    <div id="contentView" style="margin-top: 5%">
+
+
       <b-row style="padding-bottom:1.5%">
         <b-col cols="4" />
         <b-col cols="4" >
-
-          <b-button class="btn-danger btn-block" v-on:click="executeScript(1)" data-toggle="tooltip" data-placement="right" title="Descripció reiniciar">
+          <b-button class="btn-danger btn-block" v-on:click="executeScript(1)" data-toggle="tooltip" data-placement="right">
             Reiniciar Raspberry
           </b-button>
         </b-col>
         <b-col cols="4" />
 
-
       </b-row>
       <b-row style="padding-bottom:1.5%">
         <b-col cols="4" />
         <b-col cols="4" >
-          <b-button class="btn-danger btn-block" v-on:click="executeScript(2)" data-toggle="tooltip" data-placement="right" title="Descripció apagar">
+          <b-button class="btn-danger btn-block" v-on:click="executeScript(2)" data-toggle="tooltip" data-placement="right">
             Apagar Raspberry
           </b-button>
         </b-col>
@@ -26,7 +31,7 @@
       <b-row style="padding-bottom:1.5%">
         <b-col cols="4" />
         <b-col cols="4" >
-          <b-button class="btn-danger btn-block" v-on:click="executeScript(3)" data-toggle="tooltip" data-placement="right" title="Descripció iniciar">
+          <b-button class="btn-danger btn-block" v-on:click="executeScript(3)" data-toggle="tooltip" data-placement="right">
             Iniciar Billboard
           </b-button>
         </b-col>
@@ -36,7 +41,7 @@
       <b-row  style="padding-bottom:1.5%">
         <b-col cols="4" />
         <b-col cols="4">
-          <b-button class="btn-danger btn-block" v-on:click="executeScript(4)" data-toggle="tooltip" data-placement="right" title="Descripció reiniciar">
+          <b-button class="btn-danger btn-block" v-on:click="executeScript(4)" data-toggle="tooltip" data-placement="right">
             Reiniciar Docker
           </b-button>
         </b-col>

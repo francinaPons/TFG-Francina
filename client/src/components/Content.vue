@@ -1,7 +1,6 @@
 <template>
 <div>
   <div v-if="seenContent && contentSettings" id="contentView">
-    <br>
     <div style="display: flex">
       <div style="width: 90%; margin: auto;">
         <vue-good-table ref ='my-table' style="color: #0032ce;"
@@ -48,14 +47,13 @@
   </div>
   <div v-if="!seenContent" id="contentUploadView" style="width:800px; margin:0 auto;">
     <ContentUpload></ContentUpload>
-    <br>
+
     <b-button variant="outline-primary" @click="methodUpload">Enrere</b-button>
   </div>
   <div v-if="!contentSettings">
     <ContentSettings :files="multipleRows"></ContentSettings>
     <b-button variant="outline-primary" @click="methodUploadContentSettings">Enrere</b-button>
   </div>
-  <br>
 </div>
 </template>
 

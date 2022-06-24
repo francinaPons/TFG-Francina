@@ -1,8 +1,8 @@
 <template>
 <div>
   <div class="container" style="overflow-scrolling: auto"  v-if="logged">
-    <b-tabs content-class="mt-5">
-      <b-tab title="Contingut">
+    <b-tabs content-class="" style="">
+      <b-tab style="margin-bottom: 30px" title="Contingut">
         <Content></Content>
       </b-tab>
       <b-tab title="Llistes de reproducció" active>

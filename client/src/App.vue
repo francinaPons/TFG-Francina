@@ -1,10 +1,11 @@
 <template>
   <div id="app">
     <b-navbar variant="faded" type="dark">
-      <b-navbar-brand href="https://mat.ub.edu/">
+      <b-navbar-brand>
         <img src="https://campusvirtual.ub.edu/pluginfile.php/1/theme_snap/logo/1655335259/ub_logo.png"
              height="35"
-             class="d-inline-block align-top" alt="Logo UB" style="margin-right: 1rem">
+             class="d-inline-block align-top" alt="Logo UB" style="margin-right: 1rem"
+        href="https://mat.ub.edu/">
         Gestió de la cartellera
       </b-navbar-brand>
     </b-navbar>

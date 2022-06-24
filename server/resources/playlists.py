@@ -59,11 +59,13 @@ class Playlists(Resource):
                     print(item)
                     new_item = ItemsModel.find_by_name(name=item['name'])
                     if new_item is None:
+
                         new_item = ItemsModel(name=item['name'],
                                               duration=item['duration'], priority=item['priority'])
                     new_playlist.items.append(new_item)
                 new_playlist.save_to_db()
                 return {'playlist': new_playlist.json()}, 200
+            return {'playlist': new_playlist.json()}, 200
 
         except:
             return {'message': "Hi ha hagut un problema amb la petició"}, 400

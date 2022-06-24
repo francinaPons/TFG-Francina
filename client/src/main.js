@@ -7,10 +7,12 @@ import App from './App.vue';
 import router from './router';
 import 'bootstrap/dist/css/bootstrap.css';
 import './assets/application.css';
+import BootstrapVueIcons from "bootstrap-vue/dist/bootstrap-vue-icons.esm";
 
 Vue.component('vue-taggable-select', VueTaggableSelect);
 
 Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons)
 Vue.use(VueGoodTablePlugin);
 
 Vue.config.productionTip = false;
