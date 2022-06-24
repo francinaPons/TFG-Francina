@@ -1,9 +1,19 @@
 <template>
   <div>
+    <h1>Llistes de reproducció:</h1>
+      <br>
     <div id="contentView" v-if="seenContent">
-      <div class="col-3 mb-5">
-        Mode de reproducció
-        <b-form-select
+      <div class="row" style="margin-bottom: 2%">
+        <div class="col-3">
+          Mode de reproducció
+        </div>
+
+        <div class="col-9">
+
+        </div>
+
+        <div class="col-3">
+          <b-form-select
           :options="options"
           style="margin-left: 1%; width: 150px"
           v-model="selected"
@@ -12,7 +22,24 @@
             Fitxer intercalat:
             {{ intercalatedFile }}
           </div>-->
+        </div>
+
+        <div class="col-9">
+
+        </div>
       </div>
+<!--      <div class="col-3 mb-5">-->
+<!--        Mode de reproducció-->
+<!--        <b-form-select-->
+<!--          :options="options"-->
+<!--          style="margin-left: 1%; width: 150px"-->
+<!--          v-model="selected"-->
+<!--        ></b-form-select>-->
+<!--        &lt;!&ndash;<div class="mt-3" v-if="selected === 'inter' || selected === 'rndm-inter' ">-->
+<!--            Fitxer intercalat:-->
+<!--            {{ intercalatedFile }}-->
+<!--          </div>&ndash;&gt;-->
+<!--      </div>-->
       <div class="row">
         <div class="col-3">
           <b>Playlists disponibles:</b>

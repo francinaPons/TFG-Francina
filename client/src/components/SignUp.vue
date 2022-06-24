@@ -1,8 +1,10 @@
 <template>
 <div >
+    <h1>Gestionar Usuaris:</h1>
+
     <br>
     <div style="display: flex">
-      <div style="width: 80%; margin: auto; margin-left:1%">
+      <div style="margin: auto;">
         <vue-good-table style="color: #0032ce;" :selected="enabled" :columns="columns" :rows="usersList"  max-height="300px" :search-options="{enabled: true}" :pagination-options="{enabled: true, perPage: 5,
         nextLabel: 'Següent',
         prevLabel: 'Anterior',
