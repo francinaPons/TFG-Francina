@@ -7,6 +7,7 @@
       v-model="files"
       :fields="fields"
     >
+
     </b-editable-table>
     <p>A quina llista vols afegir aquests items?</p>
      <b-form-select v-model="selectedPlaylist" :options="playlists" @change="getTagsPlaylist(selectedPlaylist)">
@@ -14,28 +15,38 @@
        <b-form-select-option :value="-1">Crear nova llista</b-form-select-option>
      </b-form-select>
 
-    <div v-if="selectedPlaylist === -1">
+    <div v-if="selectedPlaylist === -1" class="my-4">
       <b-form-group label-cols="4" label-cols-lg="2" label="Nom de la nova llista: " label-for="input">
         <b-form-input id="input" v-model="newPlaylist"></b-form-input>
       </b-form-group>
     </div>
     <div v-if=" selectedPlaylist !== null">
-      <div v-if="selectedPlaylist !== -1">
-        La playlist conté els següents tags: {{ currentTags }}
-      </div>
-      <b-form-group v-if="selectedPlaylist !== null"
+      <div>
+        <label for="tags-pills">Enter tags</label>
+        <b-form-tags
+          style="align-items: center"
+          input-id="tags-pills"
+          v-model="value"
+          tag-pills
+          separator=" "
+          placeholder="Entra nous tags separats per un espai">
+        </b-form-tags>
+       </div>
+
+      <!--<b-form-group v-if="selectedPlaylist !== null"
               class="my-4"
               id="fieldset-2"
               label="Introdueix els tags de la playlist"
               label-for="input-2"
             >
+
                 <vue-taggable-select
                 v-model="tagsPlaylist"
                 placeholder="Introdueix tags"
                 :taggable="true"
                 :options="allTags"
                 ></vue-taggable-select>
-            </b-form-group>
+            </b-form-group>-->
     </div>
 
     <b-button style="margin: 3%" class="btn-primary" @click="savePlaylist()">Guardar llista de reproducció</b-button>
@@ -64,15 +75,15 @@ export default {
         { id: 3, key: "size", label: "Mida", editable: false },
         { id: 4, key: "priority", label: "Prioritat", type: "range", min: "1",
           max: "5", editable: true },
-        { id: 5, key: "duration", label: "Duració", type: "number", editable: true },
+        { id: 5, key: "duration", label: "Duració", type: "number", editable: true},
       ],
       playlists: [],
       selectedPlaylist: null,
       newPlaylist: '',
-      tagsPlaylist: [],
       tags: [],
-      currentTags: [],
-      allTags: []
+      value: [],
+      allTags: [],
+      options: [],
     };
   },
   methods: {
@@ -130,7 +141,7 @@ export default {
           console.log(res.data.tags);
           for (let i = 0; i < res.data.tags.length; i += 1) {
             console.log(res.data.tags[i]);
-            this.allTags.push(res.data.tags[i].name);
+            this.options.push(res.data.tags[i].name);
           }
         })
         .catch((error) => {
@@ -139,20 +150,18 @@ export default {
     },
     getTagsPlaylist(playlistName) {
       console.log(playlistName)
-      this.currentTags = []
+      this.value = []
       if (playlistName !== null && playlistName !== -1) {
         const path = 'http://127.0.0.1:80/playlists/' + playlistName;
         axios.get(path, {auth: {username: this.$route.query.token}})
           .then((res) => {
             console.log(res.data.playlist.tags);
-            for (var key in res.data.playlist.tags) {
+            for (const key in res.data.playlist.tags) {
               console.log(key)
-              var obj = res.data.playlist.tags[key];
+              const obj = res.data.playlist.tags[key];
               console.log(obj)
-              this.currentTags.push(obj.name)
+              this.value.push(obj.name)
             }
-
-            // console.log(this.currentTags)
           })
           .catch((error) => {
             console.log(error.response.data.message);
@@ -176,5 +185,8 @@ table.editable-table td {
   padding: 8px;
   vertical-align: middle;
 }
+  .badge {
+    background-color: #0072CE !important;
+  }
 
 </style>

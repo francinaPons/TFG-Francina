@@ -57,7 +57,8 @@ class Playlists(Resource):
                 # Add items to the playlist
                 for item in dades['items']:
                     print(item)
-                    new_item = ItemsModel.find_by_name(name=item['name'])
+                    new_item = ItemsModel.find_by_name_duration_priority(name=item['name'], duration=item['duration'],
+                                                                         priority=item['priority'])
                     if new_item is None:
 
                         new_item = ItemsModel(name=item['name'],

@@ -42,7 +42,47 @@
       <div class="row">
         <div class="col-3">
           <b>Llistes disponibles:</b>
-          <b-list-group class="list-group">
+          <b-form-group
+          label="Filter"
+          label-for="filter-input"
+          label-cols-sm="3"
+          label-align-sm="right"
+          label-size="sm"
+          class="mb-0"
+        >
+          <b-input-group size="sm">
+            <b-form-input
+              id="filter-input"
+              v-model="filter"
+              type="search"
+              placeholder="Escriu un tag"
+            ></b-form-input>
+          </b-input-group>
+          </b-form-group>
+          <b-table
+            :striped="true"
+            :bordered="true"
+            :small="true"
+            :hover="true"
+            :items="playlists"
+            :fields="fields"
+            :filter="filter"
+            :filter-included-fields="filterOn"
+            sort-icon-left
+            selectable
+            select-mode='single'
+            @row-selected="updatePlaylist"
+
+          >
+            <template #cell(tags)="data">
+
+              <span v-for="tag in data.value">
+                {{ tag.name }}
+              </span>
+            </template>
+          </b-table>
+
+          <!--<b-list-group class="list-group">
             <b-list-group-item
               v-for="item in playlists"
               v-bind:key="item.name"
@@ -50,10 +90,8 @@
               @click="updatePlaylist(item)"
             >
               {{ item.name }}
-
-              <!--<p>{{ item.tags }} </p>-->
             </b-list-group-item>
-          </b-list-group>
+          </b-list-group>-->
           <!--<div style="cursor: pointer" v-for="item in playlists"
                v-bind:key="item" @click="updatePlaylist(item)">
             - {{ item.name }}
@@ -84,7 +122,7 @@
                   <span v-if="props.column.field === 'duration'">
                     <span
                       v-if="props.row.duration !== null"
-                      >{{props.row.duration/1000}}</span
+                      >{{props.row.duration}}</span
                     >
                   </span>
                   <span v-else>
@@ -186,6 +224,7 @@ import axios from 'axios';
 
 export default {
   name: 'Playlist',
+
   mounted() {
     // this.getFiles();
     this.getTags();
@@ -250,7 +289,9 @@ export default {
       tagsPlaylist: [],
       playlists: [],
       selectedIn: '',
-
+      filter: null,
+      fields: ['name', 'tags'],
+      filterOn: ['tags']
     };
   },
   methods: {
@@ -568,7 +609,8 @@ export default {
       // this.getFiles();
     },
     updatePlaylist(playlist) {
-      console.log(playlist);
+      console.log(playlist[0])
+      playlist = playlist[0]
       this.files = playlist.items
       this.playlist_name = playlist.name
       this.fileIsChoosen = false
