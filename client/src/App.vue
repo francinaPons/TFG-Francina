@@ -9,7 +9,9 @@
         Gestió de la cartellera
       </b-navbar-brand>
     </b-navbar>
-    <b-navbar variant="faded" fixed="bottom">
+
+    <router-view/>
+    <b-navbar variant="faded" fixed="bottom" small>
       <div style="margin: 0px auto">
         <img src="../static/crai_logo_unatinta_blanc.png" width="250" height="80">
       <b-button v-b-modal.about-modal style="color:white;width:300px; height:80px"
@@ -18,7 +20,6 @@
       </div>
 
     </b-navbar>
-    <router-view/>
     <b-modal class="modal-backdrop fade in"  hide-backdrop id="about-modal" hide-footer>
       <label style="display: flex; margin-bottom: .5rem;color: #0072ce;">
         Projecte desenvolupat com a Treball de Final de Grau d'Enginyeria Informàtica
@@ -41,4 +42,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
+
 </style>

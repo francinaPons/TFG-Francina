@@ -43,12 +43,12 @@
         <div class="col-3">
           <b>Llistes disponibles:</b>
           <b-form-group
-          label="Filter"
+          label="Filtra"
           label-for="filter-input"
           label-cols-sm="3"
           label-align-sm="right"
           label-size="sm"
-          class="mb-0"
+          class=""
         >
           <b-input-group size="sm">
             <b-form-input
@@ -129,6 +129,13 @@
                     {{props.formattedRow[props.column.field]}}
                   </span>
                 </template>
+                <template slot="table-row" slot-scope="props">
+                  <span v-if="props.column.field === 'priority'">
+                    <span v-for="i in props.row.priority">
+                      <b-icon-star-fill></b-icon-star-fill>
+                    </span>
+                  </span>
+                </template>
               </vue-good-table>
             </div>
 
@@ -141,7 +148,7 @@
           </div>
         </div>
       </div>
-      <div class="row" style="display: flex; justify-content: space-around" >
+      <div class="row" style="display: flex; justify-content: space-around; margin-top: 2rem" >
         <!--<b-modal @hidden="resetModal" @ok="handleOk(tagsPlaylist)"
                    @show="resetModal"
                    centered
@@ -261,20 +268,9 @@ export default {
           field: 'duration',
           type: 'number',
         },
-      ],
-      columnsRandom: [
         {
-          label: 'Nom',
-          field: 'name',
-        },
-        {
-          label: 'Tipus',
-          field: 'type',
-        },
-        {
-          label: 'Durada en segons (només Imatges)',
-          field: 'duration',
-          type: 'number',
+          label: 'Prioritat',
+          field: 'priority',
         },
       ],
       selected: 'seq',
@@ -286,7 +282,6 @@ export default {
       ],
       new_playlist_name: '',
       tags: [],
-      tagsPlaylist: [],
       playlists: [],
       selectedIn: '',
       filter: null,
@@ -301,6 +296,7 @@ export default {
       this.imageSource = `/thumbnail/${path}`;
       // console.log(this.imageSource);
     },
+    /*
     playNext() {
       const fileName = this.selectedFileName;
       const extension = fileName.substring(fileName.lastIndexOf('.'));
@@ -330,7 +326,7 @@ export default {
         // eslint-disable-next-line radix
         this.setIntercalatedAXIOS(fileName, parseInt(inputDuration), 'Image');
       }
-    },
+    },*/
     /*
     setNext(fname, fduration, ftype) {
       axios({
@@ -349,7 +345,7 @@ export default {
           // eslint-disable-next-line no-alert
           alert(error.response.data.message);
         });
-    },*/
+    },
     setIntercalatedAXIOS(fname, fduration, ftype) {
       axios({
         method: 'post',
@@ -366,7 +362,7 @@ export default {
         .catch((error) => {
           alert(error.response.data.message);
         });
-    },
+    },*/
     resetModal() {
         this.intercalatedSelector = ''
     },
@@ -478,6 +474,7 @@ export default {
         this.previousRow = params;
       }
     },
+    /*
     getFiles() {
       if (Object.keys(this.$route.query.token).length !== 0) {
         const path = 'http://127.0.0.1:80/playlist';
@@ -495,7 +492,7 @@ export default {
             }
           });
       }
-    },
+    },*/
     getTags() {
       const path = 'http://127.0.0.1:80/tags';
       axios.get(path, { auth: { username: this.$route.query.token } })
@@ -528,7 +525,7 @@ export default {
         .catch((error) => {
           console.log(error.response.data.message);
         });
-    },*/
+    },
     changeMode() {
       let m = this.selected;
       if (this.selected === null) {
@@ -549,7 +546,6 @@ export default {
           alert(error.response.data.message);
         });
     },
-    /*
     changeTable() {
       if (this.selected === 'rndm') {
         this.columns = [
@@ -603,11 +599,11 @@ export default {
         .catch((error) => {
           console.log(error.response.data.message);
         });
-    },*/
+    },
     methodUpload() {
       this.seenContent = !this.seenContent;
       // this.getFiles();
-    },
+    },*/
     updatePlaylist(playlist) {
       console.log(playlist[0])
       playlist = playlist[0]

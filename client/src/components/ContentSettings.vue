@@ -73,7 +73,7 @@ export default {
         { id: 1, key: "name", label: "Name", type: "text", editable: false },
         { id: 2, key: "path", label: "Path", type: "text", editable: false },
         { id: 3, key: "size", label: "Mida", editable: false },
-        { id: 4, key: "priority", label: "Prioritat", type: "range", min: "1",
+        { id: 4, key: "priority", label: "Prioritat", type: "range", min: "0",
           max: "5", editable: true },
         { id: 5, key: "duration", label: "Duració", type: "number", editable: true},
       ],
@@ -100,7 +100,7 @@ export default {
         data: {
           name: this.newPlaylist,
           items: this.files,
-          tags: this.tagsPlaylist,
+          tags: this.value,
         },
         auth: { username: this.$route.query.token },
       }).then((res) => {

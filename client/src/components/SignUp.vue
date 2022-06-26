@@ -23,7 +23,7 @@
         </vue-good-table>
       </div>
     </div>
-    <div style="margin:0 auto;">
+    <div style="margin:2rem auto;">
       <b-button v-if="userIsChoosen" variant="danger" @click="removeAccount">Esborrar l'usuari</b-button>
       <span style="display:inline-block; width:35px;"></span>
       <b-button v-b-modal="modifyUser-modal" v-if="userIsChoosen" variant="outline-primary" @click="updateAccountModal">Modificar l'usuari</b-button>

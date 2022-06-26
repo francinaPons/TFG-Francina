@@ -2,7 +2,16 @@
 <div >
     <div>
       <h1>Mode manteniment:</h1>
-      <br>
+      <div style="max-width: 60%; margin: auto auto 2rem;">
+        <h6>
+          Té per objectiu treballar amb el sistema aturant la llista de reproducció.
+          En activar-lo, el televisor reprodueix el fitxer default.mp4 reiteradament.
+          És una manera de controlar en tot moment la reproducció, sobretot quan estem fent canvis.
+          <br>
+          <i>Nota: No s'activa fins que acaba de reproduir-se el contingut que es
+            reproduïa en el moment d'activar-lo.</i>
+        </h6>
+      </div>
       <b-button  v-if="activated" variant="outline-primary" @click="switchStatus">Desactivar</b-button>
       <b-button  v-if="!activated" variant="danger" @click="switchStatus">Activar</b-button>
     </div>
