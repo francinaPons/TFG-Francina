@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-from server.models.accounts import AccountsModel
+from models.accounts import AccountsModel
 
 
 class Login(Resource):

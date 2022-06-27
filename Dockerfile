@@ -6,11 +6,16 @@ RUN apk --update add --no-cache \
     jpeg-dev zlib-dev libjpeg \
     gfortran musl-dev \
     ffmpeg
-RUN apk add make automake gcc g++ subversion python3-dev
-RUN mkdir /app
+
+COPY ./requirements.txt /app/requirements.txt
+
 WORKDIR /app
+
+# install the dependencies and packages in the requirements file
+RUN pip install -r requirements.txt
+
+# copy every content from the local file to the image
 COPY . /app
-ADD requirements.txt /app
-ADD server/app.py /app
-RUN pip3 install -r requirements.txt
+
+RUN apk add make automake gcc g++ subversion python3-dev
 CMD ["gunicorn", "-w 4", "-b", "0.0.0.0:80", "app:app", "--timeout 20000"]

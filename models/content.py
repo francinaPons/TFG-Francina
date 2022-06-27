@@ -1,6 +1,6 @@
 import json
 
-from server.db import db
+from db import db
 
 
 class ContentModel(db.Model):

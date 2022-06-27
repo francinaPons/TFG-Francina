@@ -1,7 +1,7 @@
 from flask_restful import Resource
 
-from server.models.accounts import auth
-from server.variable_store import *
+from models.accounts import auth
+from variable_store import *
 
 
 class Status(Resource):

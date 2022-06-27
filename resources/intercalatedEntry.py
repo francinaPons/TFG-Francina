@@ -1,10 +1,11 @@
 from flask import make_response
+from flask_restful import Resource, reqparse
 
-from server.checktype import checkType
-from server.models.accounts import auth
-from server.resources.nextByMode import *
+from checktype import checkType
+from models.accounts import auth
+from resources.nextByMode import *
 
-from server.variable_store import *
+from variable_store import *
 
 
 class IntercalatedEntry(Resource):

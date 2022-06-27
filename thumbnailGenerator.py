@@ -1,5 +1,5 @@
 from moviepy.editor import VideoFileClip
-from server.checktype import checkType
+from checktype import checkType
 
 
 def generate_thumbnail(name):

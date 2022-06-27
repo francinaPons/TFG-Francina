@@ -11,7 +11,18 @@
     </b-navbar>
 
     <router-view/>
-    <b-navbar variant="faded" fixed="bottom" small>
+    <footer style=" position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #0072CE;
+      text-align: center;">
+      <img src="../static/crai_logo_unatinta_blanc.png" width="250" height="80">
+      <b-button v-b-modal.about-modal style="color:white;width:300px; height:80px"
+                variant="link">Sobre aquesta aplicació</b-button>
+      <img src="../static/logo_ub.png" width="250" height="80">
+    </footer>
+    <!--<b-navbar variant="faded" fixed="bottom" small>
       <div style="margin: 0px auto">
         <img src="../static/crai_logo_unatinta_blanc.png" width="250" height="80">
       <b-button v-b-modal.about-modal style="color:white;width:300px; height:80px"
@@ -19,7 +30,7 @@
       <img src="../static/logo_ub.png" width="250" height="80">
       </div>
 
-    </b-navbar>
+    </b-navbar>-->
     <b-modal class="modal-backdrop fade in"  hide-backdrop id="about-modal" hide-footer>
       <label style="display: flex; margin-bottom: .5rem;color: #0072ce;">
         Projecte desenvolupat com a Treball de Final de Grau d'Enginyeria Informàtica

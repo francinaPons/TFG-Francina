@@ -66,17 +66,17 @@
           let script = ""
           switch (script_mode) {
             case 1:
-              script = 'sudo shutdown -r now'
+              script = 'shutdown -r now'
               break
             case 2:
-              script = 'sudo shutdown -h'
+              script = 'shutdown -h'
               break
             case 3:
-              script = 'sudo shutdown -h 19:57; cd TFG_Cartellera/; ' +
+              script = 'shutdown -h 19:57; ' +
                 'docker-compose up -d ;chromium-browser --kiosk --app=localhost:8000\n'
               break
             case 4:
-              script = 'docker-compose stop; docker-compose down; docker-compose up \n'
+              script = 'sudo docker-compose stop; docker-compose down; docker-compose up \n'
               break
           }
           axios({

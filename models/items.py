@@ -1,5 +1,5 @@
-from server.checktype import checkType
-from server.db import db
+from checktype import checkType
+from db import db
 import json
 
 

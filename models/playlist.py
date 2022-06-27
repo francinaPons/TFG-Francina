@@ -2,7 +2,7 @@ import json
 
 from sqlalchemy.orm import relationship
 
-from server.db import db
+from db import db
 
 
 class PlaylistModel(db.Model):

@@ -1,8 +1,8 @@
 from flask_restful import Resource, reqparse
-from server.models.playlist_names import PlaylistsModel
-from server.models.tags import TagsModel
-from server.models.items import ItemsModel
-from server.models.accounts import auth
+from models.playlist_names import PlaylistsModel
+from models.tags import TagsModel
+from models.items import ItemsModel
+from models.accounts import auth
 
 
 class Playlists(Resource):

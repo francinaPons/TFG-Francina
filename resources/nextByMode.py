@@ -1,6 +1,6 @@
 import json
-from server.models.playlist import PlaylistModel
-from server.variable_store import *
+from models.playlist import PlaylistModel
+from variable_store import *
 import random
 
 

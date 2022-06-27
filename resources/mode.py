@@ -1,8 +1,8 @@
 from flask_restful import Resource
 from flask_restful import reqparse
 
-from server.models.accounts import auth
-from server.variable_store import *
+from models.accounts import auth
+from variable_store import *
 
 
 class Mode(Resource):

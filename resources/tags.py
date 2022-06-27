@@ -1,7 +1,7 @@
 from flask_restful import Resource, reqparse
 
-from server.models.tags import TagsModel
-from server.models.accounts import auth
+from models.tags import TagsModel
+from models.accounts import auth
 
 
 class Tags(Resource):

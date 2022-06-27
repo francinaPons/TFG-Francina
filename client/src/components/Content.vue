@@ -41,7 +41,7 @@
         </div>
       <div>
         <span style="display:inline-block; width:50px;"></span>
-        <b-img thumbnail fluid v-if="fileIsChoosen" v-bind:src=imageSource alt="Image 1" width="300" height="200"></b-img>
+        <b-img thumbnail fluid v-if="fileIsChoosen" v-bind:src=imageSource alt="Image" width="300" height="200"></b-img>
       </div>
     </div>
   </div>

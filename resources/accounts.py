@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
-from server.models.accounts import AccountsModel
-from server.models.accounts import auth
+from models.accounts import AccountsModel
+from models.accounts import auth
 
 
 class Accounts(Resource):
@@ -107,7 +107,6 @@ class Accounts(Resource):
 
 
 class AccountsList(Resource):
-    @auth.login_required(role='admin')
     def get(self):
         acc = AccountsModel.retrieveAllAccounts(self)
 

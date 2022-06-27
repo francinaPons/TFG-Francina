@@ -1,9 +1,9 @@
 from flask import make_response
 from flask_restful import Resource, reqparse
 
-from server.checktype import checkType
-from server.models.accounts import auth
-from server.models.items import ItemsModel
+from checktype import checkType
+from models.accounts import auth
+from models.items import ItemsModel
 
 
 class Items(Resource):

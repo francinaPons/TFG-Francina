@@ -40,3 +40,7 @@
 .tab-content {
     margin-top: 2%;
 }
+
+.fixed-bottom {
+    position: unset;
+}

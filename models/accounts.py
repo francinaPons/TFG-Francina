@@ -5,7 +5,7 @@ from flask_httpauth import HTTPBasicAuth
 from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
 from passlib.apps import custom_app_context as pwd_context
 
-from server.db import db
+from db import db
 
 auth = HTTPBasicAuth()
 

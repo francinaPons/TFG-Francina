@@ -5,13 +5,6 @@
       <div class="row" style="margin-bottom: 2%">
         <div class="col-3">
           Tria el mode de reproducció
-        </div>
-
-        <div class="col-9">
-
-        </div>
-
-        <div class="col-3">
           <b-form-select
           :options="options"
           style="margin-left: 1%; width: 150px"
@@ -22,25 +15,9 @@
             {{ intercalatedFile }}
           </div>-->
         </div>
-
-        <div class="col-9">
-
-        </div>
       </div>
-<!--      <div class="col-3 mb-5">-->
-<!--        Mode de reproducció-->
-<!--        <b-form-select-->
-<!--          :options="options"-->
-<!--          style="margin-left: 1%; width: 150px"-->
-<!--          v-model="selected"-->
-<!--        ></b-form-select>-->
-<!--        &lt;!&ndash;<div class="mt-3" v-if="selected === 'inter' || selected === 'rndm-inter' ">-->
-<!--            Fitxer intercalat:-->
-<!--            {{ intercalatedFile }}-->
-<!--          </div>&ndash;&gt;-->
-<!--      </div>-->
       <div class="row">
-        <div class="col-3">
+        <div class="col-2">
           <b>Llistes disponibles:</b>
           <b-form-group
           label="Filtra"
@@ -98,10 +75,7 @@
           </div>-->
         </div>
         <div class="col-9">
-          <div style="">
-            <div
-              style="max-width: 90%"
-            >
+          <div style="max-width: 90%">
               <vue-good-table
                 :columns="columns"
                 :pagination-options="{enabled: true, perPage: 25,
@@ -137,15 +111,11 @@
                   </span>
                 </template>
               </vue-good-table>
-            </div>
-
-            <!--<div>
-              <span style="display:inline-block; width:50px;"></span>
-              <b-img alt="Image 1" fluid height="200" thumbnail
-                     v-bind:src=imageSource v-if="fileIsChoosen"
-                     width="300"></b-img>
-            </div>-->
           </div>
+        </div>
+        <div class="col-1">
+          <img src="static/1.png" alt="Image">
+          <b-img thumbnail fluid v-if="fileIsChoosen" v-bind:src=imageSource alt="Image" width="300" height="200"></b-img>
         </div>
       </div>
       <div class="row" style="display: flex; justify-content: space-around; margin-top: 2rem" >
@@ -293,8 +263,7 @@ export default {
     previewFile(path) {
       console.log('path:');
       console.log(path);
-      this.imageSource = `/thumbnail/${path}`;
-      // console.log(this.imageSource);
+      this.imageSource = `~/thumbnail/${path}`;
     },
     /*
     playNext() {
