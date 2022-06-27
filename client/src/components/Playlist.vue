@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-bottom: 100px;">
     <h1>Llistes de reproducció:</h1>
     <div id="contentView" v-if="seenContent">
       <div class="row" style="margin-bottom: 2%">
@@ -113,10 +113,10 @@
               </vue-good-table>
           </div>
         </div>
-        <div class="col-1">
-          <img src="static/1.png" alt="Image">
+        <!--<div class="col-1">
+          <img src="../../static/logo_blanc.png" alt="Image">
           <b-img thumbnail fluid v-if="fileIsChoosen" v-bind:src=imageSource alt="Image" width="300" height="200"></b-img>
-        </div>
+        </div>-->
       </div>
       <div class="row" style="display: flex; justify-content: space-around; margin-top: 2rem" >
         <!--<b-modal @hidden="resetModal" @ok="handleOk(tagsPlaylist)"

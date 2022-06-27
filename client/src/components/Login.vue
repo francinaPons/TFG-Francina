@@ -137,3 +137,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  footer {
+     position: fixed !important;
+  }
+</style>

@@ -1,5 +1,5 @@
 <template>
-<div>
+<div style="margin-bottom: 100px;">
   <div v-if="seenContent && contentSettings" id="contentView">
     <div style="display: flex">
       <div style="width: 90%; margin: auto;">
