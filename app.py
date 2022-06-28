@@ -1,10 +1,10 @@
-from db import db, secret_key
 from flask import Flask, render_template, send_from_directory
-from flask import jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate, MigrateCommand
 from flask_restful import Api
 from flask_script import Manager
+
+from db import db, secret_key
 from resources.accounts import Accounts, AccountsList
 from resources.content import Content, checkType
 from resources.items import Items, ItemsList

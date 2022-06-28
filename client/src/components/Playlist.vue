@@ -107,10 +107,10 @@
               </vue-good-table>
           </div>
         </div>
-        <div>
+        <!--<div>
           <span style="display:inline-block; width:50px;"></span>
           <b-img thumbnail fluid v-if="fileIsChoosen" v-bind:src=imageSource alt="Image 1" width="300" height="200"></b-img>
-      </div>
+        </div>-->
       </div>
       <div class="row" style="display: flex; justify-content: space-around; margin-top: 2rem" >
         <!--<b-modal @hidden="resetModal" @ok="handleOk(tagsPlaylist)"

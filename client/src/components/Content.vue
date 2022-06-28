@@ -39,10 +39,10 @@
 
         </div>
         </div>
-      <div>
+      <!--<div>
         <span style="display:inline-block; width:50px;"></span>
         <b-img thumbnail fluid v-if="fileIsChoosen" :src="imageSource" alt="Image" width="300" height="200"></b-img>
-      </div>
+      </div>-->
     </div>
   </div>
   <div v-if="!seenContent" id="contentUploadView" style="width:800px; margin:0 auto;">

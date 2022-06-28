@@ -22,7 +22,7 @@
     </div>
     <div v-if=" selectedPlaylist !== null">
       <div>
-        <label for="tags-pills">Enter tags</label>
+        <label for="tags-pills">Entra etiquetes:</label>
         <b-form-tags
           style="align-items: center"
           input-id="tags-pills"
@@ -89,6 +89,7 @@ export default {
   methods: {
     savePlaylist() {
       console.log(this.selectedPlaylist)
+      console.log(this.value)
       if (this.selectedPlaylist !== null && this.selectedPlaylist !== -1){
         this.newPlaylist = this.selectedPlaylist
       }
