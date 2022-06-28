@@ -24,8 +24,8 @@ app.config.from_object(__name__)
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
 
-app.config["CONTENT_UPLOADS"] = '/app/media'
-app.config["CONTENT_UPLOADS_THUMBNAILS"] = '/app/media/thumbnails'
+app.config["CONTENT_UPLOADS"] = 'media'
+app.config["CONTENT_UPLOADS_THUMBNAILS"] = 'media/thumbnails'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 

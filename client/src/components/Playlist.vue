@@ -1,24 +1,19 @@
 <template>
   <div style="margin-bottom: 100px;">
     <h1>Llistes de reproducció:</h1>
-    <div id="contentView" v-if="seenContent">
-      <div class="row" style="margin-bottom: 2%">
-        <div class="col-3">
-          Tria el mode de reproducció
+     Tria el mode de reproducció
           <b-form-select
           :options="options"
-          style="margin-left: 1%; width: 150px"
+          style="width: 150px; margin-left: 2rem;"
           v-model="selected"
         ></b-form-select>
-        <!--<div class="mt-3" v-if="selected === 'inter' || selected === 'rndm-inter' ">
-            Fitxer intercalat:
-            {{ intercalatedFile }}
-          </div>-->
-        </div>
-      </div>
+    <div id="contentView" v-if="seenContent" style="margin-top: 2rem;">
       <div class="row">
-        <div class="col-2">
-          <b>Llistes disponibles:</b>
+        <div class="col-3">
+          <div class="row" style="margin-bottom: 1rem;">
+           <b>Llistes disponibles: </b>
+            <b-icon-arrow-clockwise @click="getPlaylists"></b-icon-arrow-clockwise>
+          </div>
           <b-form-group
           label="Filtra"
           label-for="filter-input"
@@ -58,7 +53,6 @@
               </span>
             </template>
           </b-table>
-
           <!--<b-list-group class="list-group">
             <b-list-group-item
               v-for="item in playlists"
@@ -79,12 +73,12 @@
               <vue-good-table
                 :columns="columns"
                 :pagination-options="{enabled: true, perPage: 25,
-        nextLabel: 'Següent',
-        prevLabel: 'Anterior',
-        rowsPerPageLabel: 'elements per pàgina',
-        ofLabel: 'de',
-        pageLabel: 'pàgina', // for 'pages' mode
-        allLabel: 'Tots',}"
+                nextLabel: 'Següent',
+                prevLabel: 'Anterior',
+                rowsPerPageLabel: 'elements per pàgina',
+                ofLabel: 'de',
+                pageLabel: 'pàgina', // for 'pages' mode
+                allLabel: 'Tots',}"
                 :rows="files"
                 :search-options="{enabled: true}"
                 :selected="enabled"
@@ -113,10 +107,10 @@
               </vue-good-table>
           </div>
         </div>
-        <!--<div class="col-1">
-          <img src="../../static/logo_blanc.png" alt="Image">
-          <b-img thumbnail fluid v-if="fileIsChoosen" v-bind:src=imageSource alt="Image" width="300" height="200"></b-img>
-        </div>-->
+        <div>
+          <span style="display:inline-block; width:50px;"></span>
+          <b-img thumbnail fluid v-if="fileIsChoosen" v-bind:src=imageSource alt="Image 1" width="300" height="200"></b-img>
+      </div>
       </div>
       <div class="row" style="display: flex; justify-content: space-around; margin-top: 2rem" >
         <!--<b-modal @hidden="resetModal" @ok="handleOk(tagsPlaylist)"
@@ -263,7 +257,7 @@ export default {
     previewFile(path) {
       console.log('path:');
       console.log(path);
-      this.imageSource = `~/thumbnail/${path}`;
+      this.imageSource = `/thumbnails/${path}`;
     },
     /*
     playNext() {
@@ -431,7 +425,9 @@ export default {
         });
     },*/
     onRowClick(params) {
-      this.imageSource = `/thumbnail/${params.row.name}`;
+
+      this.imageSource = `/thumbnails/${params.row.name}`;
+      console.log(this.imageSource)
       this.selectedFileName = params.row.name;
       this.fileIsChoosen = true;
       // eslint-disable-next-line no-param-reassign

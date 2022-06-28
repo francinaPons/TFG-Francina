@@ -41,7 +41,7 @@
         </div>
       <div>
         <span style="display:inline-block; width:50px;"></span>
-        <b-img thumbnail fluid v-if="fileIsChoosen" v-bind:src=imageSource alt="Image" width="300" height="200"></b-img>
+        <b-img thumbnail fluid v-if="fileIsChoosen" :src="imageSource" alt="Image" width="300" height="200"></b-img>
       </div>
     </div>
   </div>
@@ -84,7 +84,7 @@ export default {
       seenContent: true,
       fileIsChoosen: false,
       filesAreChoosen: false,
-      imageSource: '',
+      imageSource: null,
       urlRPI: 'http://127.0.0.1:80/content',
       selectedFileID: 0,
       selectedFileName: 0,
@@ -108,7 +108,8 @@ export default {
     previewFile(path) {
       console.log('path:');
       console.log(path);
-      this.imageSource = `/thumbnail/${path}`;
+      path = path.split('.')
+      this.imageSource = `/thumbnails/${path[0]}`;
       console.log(this.imageSource);
       // document.getElementById('preview').alt = path
       // this.$root.$emit('bv::show::modal', 'preview-modal', '#btnShow')
@@ -258,7 +259,7 @@ export default {
       console.log('path:');
       const path = params.row.name;
       console.log(path);
-      this.imageSource = `/thumbnail/${path}`;
+      this.imageSource = `thumbnails/${path.split('.')[0] + '.png'}`;
       console.log(this.imageSource);
       this.selectedFileName = params.row.name;
       this.selectedFileID = params.row.id;
