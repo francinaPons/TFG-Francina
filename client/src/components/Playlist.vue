@@ -157,7 +157,7 @@
           Reproduir llista
         </b-button>
 
-        <b-modal id="modal-1" v-if="selected === 'inter'" title="Fitxer intercalat" @show="resetModal"
+        <b-modal id="modal-1" v-if="selected === 'inter' || selected === 'rndm-inter'" title="Fitxer intercalat" @show="resetModal"
           @hidden="resetModal"
           @ok="handleOk"
           class="modal-backdrop fade in"  hide-backdrop aria-hidden="true">
@@ -615,6 +615,7 @@ export default {
     },
     setupPlaylist() {
       let mode = 'seq'
+      console.log(this.selected)
       if (this.selected != null) {
         mode = this.selected
       }
